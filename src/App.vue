@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="main-container">
     <theHeader/>
-    <router-view></router-view>
+    <router-view class="main-c" />
     <theFooter/>
   </div>
 </template>
@@ -12,5 +12,15 @@ import theFooter from './components/common/Footer.vue'
 </script>
 
 <style scoped>
+.main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.main-c {
+  margin-top: 356px;
 
+  min-height: calc(100vh - 700px);
+}
 </style>
