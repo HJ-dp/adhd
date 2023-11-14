@@ -11,6 +11,8 @@
             <a href="" class="global-nav-item">회원가입</a>
         </div>
         </nav>
+        <div class="title-banner-container">
+        </div>
     </div>
 </template>
 
@@ -19,12 +21,15 @@
 </script>
 
 <style scoped>
+
+/* 전체 */
 .header-container{
     width: 100%;
     height: 44px;
-    
+    position: relative;
 }
 
+/* 상단 네비 */
 .global-nav {
     margin: 0 auto;
     max-width: 1024px;
@@ -54,8 +59,19 @@
     width: 100%;
     height: 100%;
 }
-
-
+/* 헤더 배너 */
+.title-banner-container {
+    background-image: url(/titlebanner.jpg);
+    background-size: cover;
+    background-position: 50% 72%;
+    background-color: gray;
+    height: 400px;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
 
 
 
