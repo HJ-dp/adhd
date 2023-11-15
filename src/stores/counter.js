@@ -1,12 +1,16 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios';
 
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+const REST_USER_API = 'http://localhost:8080/api'
+export const useUserStore = defineStore('user', () => {
+  const userLogin = function (id,pw){
+    axios.post(`${REST_USER_API}/login`,{id,pw})
+    .then((res)=>{
+      console.log(res)
+    }).catch(()=>{
+
+    })
   }
-
-  return { count, doubleCount, increment }
+  return { userLogin }
 })
