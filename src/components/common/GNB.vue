@@ -13,8 +13,7 @@
                 <a href="" class="global-nav-item" v-if="isLogined">마이페이지</a>
             </div>
         </nav>
-        <div class="title-banner-container">
-        </div>
+
     </div>
 </template>
 
@@ -29,7 +28,8 @@ const isLogined = ref(true);
 .header-container {
     width: 100%;
     height: 44px;
-    /* position: relative; */
+    position: sticky;
+    top:0;
 }
 
 /* 상단 네비 */
@@ -53,8 +53,8 @@ const isLogined = ref(true);
     gap: 1em;
 }
 
-.global-nav-item:hover{
-    transform: scale(1.1);
+.global-nav-item:hover {
+    transform: scale(1.05);
     transition: 0.2s;
 }
 
@@ -64,7 +64,7 @@ const isLogined = ref(true);
     width: 3em;
 }
 
-.logo:hover{
+.logo:hover {
     transform: scale(1.1);
     transition: 0.2s;
     cursor: pointer;
@@ -76,18 +76,5 @@ const isLogined = ref(true);
 }
 
 
-/* 헤더 배너 */
-.title-banner-container {
-    background-image: url(/banner/titlebanner.jpg);
-    background-size: cover;
-    background-position: 50% 72%;
-    background-color: gray;
-    height: 400px;
-    position: absolute;
-    top:0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-}
 
 </style>

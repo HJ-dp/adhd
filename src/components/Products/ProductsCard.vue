@@ -2,22 +2,24 @@
     <div class="card-container">
         <div class="card-img"></div>
         <div class="card-info">
-            <div class="card-info-badge" :class="{'hot':hot, 'new':isNew}"></div>
-            <div class="card-info-title">타이틀</div>
+            <div class="card-info-badge" :class="{'hot':hot, 'new':isNew}"> NEW</div>
+            <div class="card-info-title">키링 키링~ 예스! 아예 아예{{  }}</div>
             <div class="card-info-price">₩114,000{{  }}</div>
         </div>
     </div>
 </template>
 
 <script setup>
-
+import { ref } from 'vue';
+// const hot = ref(true);
+const isNew = ref(true);
 </script>
 
 <style scoped>
 .card-container{
     width: 250px; 
     height: 400px;
-    border-radius: 30px;
+    border-radius: 10px;
     padding: 1em;
     /* flex-shrink: 0;
     flex-grow: 0; */
@@ -34,8 +36,16 @@
 /* 뱃지 */
 
 .card-info-badge{
+    margin: auto 0 0 0;
+    font-size: 12px;
 }
 .hot {
+    color:crimson;
+}
+
+.new {
+    color:gold;
+    
 
 }
 
@@ -52,22 +62,23 @@
 /* 정보 */
 
 .card-info{
-    height: 60px;
+    height: 75px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end
 }
 
 .card-info-title{
-    height: 100%;
+    /* height: 100%; */
     font-weight:600;
     font-size:17px;
+    margin: auto 0 0 0;
 }
 
 
 .card-info-price{
-    height: 100%;
+    /* height: 100%; */
     font-size:17px;
+    margin: auto 0 0 0;
 }
 
 </style>

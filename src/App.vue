@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <theHeader/>
+    <theHeader class="top"/>
     <router-view class="main-c" />
     <theFooter/>
   </div>
@@ -12,6 +12,9 @@ import theFooter from './components/common/Footer.vue'
 </script>
 
 <style scoped>
+.top{
+  z-index: 9999;
+}
 
 .main-container{
   display: flex;
@@ -21,6 +24,6 @@ import theFooter from './components/common/Footer.vue'
 }
 .main-c {
   margin-top: 356px;
-  min-height: calc(100vh - 700px);
+  min-height: calc(100vh - 200px);
 }
 </style>

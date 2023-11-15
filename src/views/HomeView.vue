@@ -1,21 +1,25 @@
 <template>
   <div class="home-container">
+    <titles/>
     <div class="section-best">
       <h1>인기 상품</h1>
       <list/>
     </div>
-    
+    <banner/>
     <div class="section-new">
       <h1>새 상품</h1>
       <list/>
     </div>
-
+    <!-- <test/> -->
   </div>
 </template>
 
 <script setup>
-
+import titles from '../components/banner/Titlebanner.vue'
 import list from '../components/Products/ProductsList.vue'
+import banner from '../components/banner/EventBanner.vue'
+import test from '../components/banner/teet.vue'
+
 </script>
 
 <style scoped>
