@@ -12,6 +12,7 @@ import theFooter from './components/common/Footer.vue'
 </script>
 
 <style scoped>
+
 .main-container{
   display: flex;
   flex-direction: column;
@@ -19,8 +20,7 @@ import theFooter from './components/common/Footer.vue'
   height: 100%;
 }
 .main-c {
-  margin-top: 356px;
-
+  /* margin-top: 356px; */
   min-height: calc(100vh - 700px);
 }
 </style>
