@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <theHeader/>
-        <div class="main">ddfs</div>
+    <div class="main">
+        dd
     </div>
 </template>
 
 <script setup>
-import theHeader from '../components/banner/Titlebanner.vue'
+
 </script>
 
 <style scoped>
 .main {
-    min-height: 1000px;
+    max-width: 1200px;
+    width: 100%;
 }
 </style>

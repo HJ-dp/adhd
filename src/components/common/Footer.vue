@@ -46,7 +46,7 @@
     width: 150px;
     height: 105px;
     background-size: cover;
-    background-image: url('../../assets/logo/Emblem_mono_Dinos_LB.png');
+    background-image: url('/logo/Emblem_mono_Dinos_LB.png');
 }
 
 

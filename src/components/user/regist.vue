@@ -3,47 +3,47 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <div class="form-container sign-up">
             <form>
-                <h1>Create Account</h1>
+                <h1>회원 가입</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your email for registeration</span>
+                <span>환영합니다.</span>
                 <input type="text" placeholder="Name">
                 <input type="email" placeholder="Email">
                 <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+                <button>가입</button>
             </form>
         </div>
         <div class="form-container sign-in">
             <form>
-                <h1>Sign In</h1>
+                <h1>로그인</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your email password</span>
+                <span>로그인 정보를 입력하세요.</span>
                 <input type="email" placeholder="Email">
                 <input type="password" placeholder="Password">
-                <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <a href="#">암호를 잊으셨나요?</a>
+                <button>로그인</button>
             </form>
         </div>
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>Enter your personal details to use all of site features</p>
-                    <button @click="toggle = !toggle" class="hidden" id="login">Sign In</button>
+                    <h1>안녕하세요!</h1>
+                    <p>계정 정보를 입력하거나 소셜 로그인을 이용하세요.</p>
+                    <button @click="toggle = !toggle" class="hidden" id="login">로그인</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
-                    <button @click="toggle = !toggle"  class="hidden" id="register">Sign Up</button>
+                    <h1>하이욤</h1>
+                    <p>회원가입 하거나 소셜 로그인을 이용하세요.</p>
+                    <button @click="toggle = !toggle"  class="hidden" id="register">회원가입</button>
                 </div>
             </div>
         </div>
@@ -106,7 +106,7 @@ body{
 }
 
 .container button{
-    background-color: #512da8;
+    background-color: #1d477d;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -220,9 +220,9 @@ body{
 }
 
 .toggle{
-    background-color: #512da8;
-    height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background-color: #1d477d;
+    height: 100%; 
+    background: linear-gradient(to right, #5c8fbb, #1d477d);
     color: #fff;
     position: relative;
     left: -100%;

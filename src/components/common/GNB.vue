@@ -2,14 +2,15 @@
     <div class="header-container">
         <nav class="global-nav">
             <div class="logo">
-                <img src="../../assets/Symbol_mono_Dinos Gold.png" alt="">
+                <img src="/logo/Emblem_Away.png" alt="">
             </div>
             <div class="global-nav-items">
-                <a href="" class="global-nav-item">마이페이지</a>
                 <a href="" class="global-nav-item">판매상품</a>
+                <a href="" class="global-nav-item">오픈마켓</a>
                 <!-- <a href="" class="global-nav-item">로그인</a> -->
-                <router-link to="/login">로그인</router-link>
-                <a href="" class="global-nav-item">회원가입</a>
+                <router-link to="/login" class="global-nav-item" v-if="isLogined">로그인</router-link>
+                <a href="" class="global-nav-item" v-if="isLogined">회원가입</a>
+                <a href="" class="global-nav-item" v-if="isLogined">마이페이지</a>
             </div>
         </nav>
         <div class="title-banner-container">
@@ -18,7 +19,8 @@
 </template>
 
 <script setup>
-
+import { ref } from 'vue';
+const isLogined = ref(true);
 
 </script>
 
@@ -51,10 +53,21 @@
     gap: 1em;
 }
 
+.global-nav-item:hover{
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
 .logo {
-    background-image: url(../../assets/Symbol_Home.png);
+    background-image: url(/logo/Emblem_Away.png);
     height: 2em;
-    width: 2em;
+    width: 3em;
+}
+
+.logo:hover{
+    transform: scale(1.1);
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 .logo>img {
@@ -65,7 +78,7 @@
 
 /* 헤더 배너 */
 .title-banner-container {
-    background-image: url(/titlebanner.jpg);
+    background-image: url(/banner/titlebanner.jpg);
     background-size: cover;
     background-position: 50% 72%;
     background-color: gray;
