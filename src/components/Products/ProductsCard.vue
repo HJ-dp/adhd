@@ -1,18 +1,23 @@
 <template>
     <div class="card-container">
-        <div class="card-img"></div>
+        <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps.productImg})`}"></div>
         <div class="card-info">
             <div class="card-info-badge" :class="{'hot':hot, 'new':isNew}"> NEW</div>
-            <div class="card-info-title">키링 키링~ 예스! 아예 아예{{  }}</div>
-            <div class="card-info-price">₩114,000{{  }}</div>
+            <div class="card-info-title">{{ dynamicProps.productName }}</div>
+            <div class="card-info-price">₩ {{ dynamicProps.price }}</div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 // const hot = ref(true);
 const isNew = ref(true);
+
+defineProps({
+    dynamicProps: Object
+})
+
 </script>
 
 <style scoped>
@@ -54,8 +59,8 @@ const isNew = ref(true);
     width:100%;
     border-radius: 10px;
     height: 325px;
-    /* background-color: crimson; */
-    background-image: url('https://d29trs2nbedcfj.cloudfront.net/erp/shop/b096259a-3ed4-43e3-9adf-e979f1abc19c20230905.jpg');
+    background-color: #e7e7e7;
+    /* background-image: url('https://d29trs2nbedcfj.cloudfront.net/erp/shop/b096259a-3ed4-43e3-9adf-e979f1abc19c20230905.jpg'); */
     background-size: cover;
     background-position: 50% 50%;
 }

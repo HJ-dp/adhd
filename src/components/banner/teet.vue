@@ -12,17 +12,18 @@
 <style scoped>
 .sub-banner-container {
     background-image: url(/banner/webanner.jpeg);
-    /* background-size:contain; */
     background-repeat: no-repeat;
-    background-position: 50% 32%;
+    background-position: 50% 25%;
     background-color: gray;
-    width: 2000px;
-    height: 400px;
+    /* width: 1920px; */
+    height: 444px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
+    position: absolute;
+    inset: 0;
 }
 
 .sub-banner-container h1{

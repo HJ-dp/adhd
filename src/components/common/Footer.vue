@@ -4,11 +4,11 @@
         <div class="footer-container-wrapper">
 
             <div class="footer-sitemap">
-                <a href="#"  class="footer-sitemap-links">상품보기</a>
-                <a href="#"  class="footer-sitemap-links">오픈마켓</a>
-                <a href="#"  class="footer-logo"></a>
-                <a href="#"  class="footer-sitemap-links">로그인</a>
-                <a href="#"  class="footer-sitemap-links">회원가입</a>
+                <router-link to="/goods/1"  class="footer-sitemap-links">판매상품</router-link>
+                <router-link to="/"  class="footer-sitemap-links">오픈마켓</router-link>
+                <router-link to="/"  class="footer-logo"></router-link>
+                <router-link to="/login"  class="footer-sitemap-links">로그인</router-link>
+                <router-link to="/login"  class="footer-sitemap-links">회원가입</router-link>
             </div>
             <div class="footer-sns-links">
                 <a href="#" class="icon footer-sns-item"><i class="fa-brands fa-google-plus-g"></i></a>

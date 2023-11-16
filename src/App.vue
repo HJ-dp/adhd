@@ -14,6 +14,7 @@ import theFooter from './components/common/Footer.vue'
 <style scoped>
 .top{
   z-index: 9999;
+  position:fixed;
 }
 
 .main-container{
@@ -23,7 +24,7 @@ import theFooter from './components/common/Footer.vue'
   height: 100%;
 }
 .main-c {
-  margin-top: 356px;
-  min-height: calc(100vh - 200px);
+  /* margin-top: 356px; */
+  min-height: calc(100vh - 35px);
 }
 </style>

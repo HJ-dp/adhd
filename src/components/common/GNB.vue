@@ -1,11 +1,11 @@
 <template>
     <div class="header-container">
         <nav class="global-nav">
-            <div class="logo">
+            <router-link to="/" class="logo">
                 <img src="/logo/Emblem_Away.png" alt="">
-            </div>
+            </router-link>
             <div class="global-nav-items">
-                <a href="#" class="global-nav-item">판매상품</a>
+                <router-link to="/goods/1" class="global-nav-item">판매상품</router-link>
                 <a href="#" class="global-nav-item">오픈마켓</a>
                 <!-- <a href="" class="global-nav-item">로그인</a> -->
                 <router-link to="/login" class="global-nav-item" v-if="isLogined">로그인</router-link>

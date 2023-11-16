@@ -1,15 +1,19 @@
 <template>
     <div class="List-container">
-        <card/>
-        <card/>
-        <card/>
-        <card/>
+        <!-- {{ dynamicProps }} -->
+        <card v-for="i in dynamicProps" :dynamic-props="i" :key="i.productId"/>
     </div>
 </template>
 
 <script setup>
-import { useProductStore }from '@/stores/product';
 import card from './ProductsCard.vue';
+
+
+defineProps({
+    dynamicProps: Object
+})
+
+
 </script>
 
 <style scoped>
@@ -20,6 +24,7 @@ import card from './ProductsCard.vue';
     display: flex;
     flex-wrap: wrap;
     gap:2em;
+    /* justify-content: center; 마진이 오토라서 옆에 붙음 */
 }
 
 </style>

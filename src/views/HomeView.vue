@@ -1,6 +1,7 @@
 <template>
   <div class="home-container">
     <titles/>
+    <div style="height: 400px;"></div>
     <div class="section-best">
       <h1>인기 상품</h1>
       <list/>
@@ -10,7 +11,6 @@
       <h1>새 상품</h1>
       <list/>
     </div>
-    <test/>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
 import titles from '../components/banner/Titlebanner.vue'
 import list from '../components/Products/ProductsList.vue'
 import banner from '../components/banner/EventBanner.vue'
-import test from '../components/banner/teet.vue'
+
 
 </script>
 
