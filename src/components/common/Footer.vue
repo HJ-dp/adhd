@@ -4,11 +4,11 @@
         <div class="footer-container-wrapper">
 
             <div class="footer-sitemap">
-                <router-link to="/goods/1"  class="footer-sitemap-links">판매상품</router-link>
-                <router-link to="/"  class="footer-sitemap-links">오픈마켓</router-link>
-                <router-link to="/"  class="footer-logo"></router-link>
-                <router-link to="/login"  class="footer-sitemap-links">로그인</router-link>
-                <router-link to="/login"  class="footer-sitemap-links">회원가입</router-link>
+                <router-link to="/goods/1"  class="footer-sitemap-links" title="클릭하면 판매상품을 볼 수 있어요">판매상품</router-link>
+                <router-link to="/"  class="footer-sitemap-links" title="클릭하면 팬들의 오픈마켓으로 이동해요">오픈마켓</router-link>
+                <router-link to="/"  class="footer-logo" title="클릭하면 메인페이지로 이동해요"></router-link>
+                <router-link to="/login"  class="footer-sitemap-links" title="클릭하면 로그인 화면으로 이동해요">로그인</router-link>
+                <router-link to="/login"  class="footer-sitemap-links" title="클릭하면 ADHD의 회원이 될 수 있어요">회원가입</router-link>
             </div>
             <div class="footer-sns-links">
                 <a href="#" class="icon footer-sns-item"><i class="fa-brands fa-google-plus-g"></i></a>

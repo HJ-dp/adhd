@@ -4,12 +4,12 @@
     <div style="height: 400px;"></div>
     <div class="section-best">
       <h1>인기 상품</h1>
-      <list/>
+      <list :dynamic-props="store.bestProductList"/>
     </div>
     <banner/>
     <div class="section-new">
       <h1>새 상품</h1>
-      <list/>
+      <list :dynamic-props="store.latestProductList"/>
     </div>
   </div>
 </template>
@@ -19,6 +19,15 @@ import titles from '../components/banner/Titlebanner.vue'
 import list from '../components/Products/ProductsList.vue'
 import banner from '../components/banner/EventBanner.vue'
 
+import {useProductStore} from '@/stores/product';
+import { onMounted } from 'vue';
+
+const store = useProductStore();
+
+onMounted(async ()=>{
+    await store.getBestList();
+    await store.getLatestList();
+})
 
 </script>
 

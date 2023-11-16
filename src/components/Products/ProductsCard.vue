@@ -1,6 +1,6 @@
 <template>
-    <div class="card-container">
-        <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps.productImg})`}"></div>
+    <div class="card-container" title="클릭하면 상품을 자세히 볼 수 있어요.">
+        <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps.productImg})`}" alt="상품 사진"></div>
         <div class="card-info">
             <div class="card-info-badge" :class="{'hot':hot, 'new':isNew}"> NEW</div>
             <div class="card-info-title">{{ dynamicProps.productName }}</div>
@@ -22,9 +22,6 @@ function joinprice(p){
     return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const pp = computed(()=>{
-    return dynamicProps.price;
-})
 
 </script>
 
