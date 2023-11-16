@@ -4,7 +4,7 @@
         <div class="card-info">
             <div class="card-info-badge" :class="{'hot':hot, 'new':isNew}"> NEW</div>
             <div class="card-info-title">{{ dynamicProps.productName }}</div>
-            <div class="card-info-price">₩ {{ dynamicProps.price }}</div>
+            <div class="card-info-price">₩ {{ joinprice(dynamicProps.price) }}</div>
         </div>
     </div>
 </template>
@@ -16,6 +16,14 @@ const isNew = ref(true);
 
 defineProps({
     dynamicProps: Object
+})
+
+function joinprice(p){
+    return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+
+const pp = computed(()=>{
+    return dynamicProps.price;
 })
 
 </script>
