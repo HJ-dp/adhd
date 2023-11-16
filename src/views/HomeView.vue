@@ -10,7 +10,7 @@
       <h1>새 상품</h1>
       <list/>
     </div>
-    <!-- <test/> -->
+    <test/>
   </div>
 </template>
 

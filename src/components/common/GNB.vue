@@ -5,12 +5,12 @@
                 <img src="/logo/Emblem_Away.png" alt="">
             </div>
             <div class="global-nav-items">
-                <a href="" class="global-nav-item">판매상품</a>
-                <a href="" class="global-nav-item">오픈마켓</a>
+                <a href="#" class="global-nav-item">판매상품</a>
+                <a href="#" class="global-nav-item">오픈마켓</a>
                 <!-- <a href="" class="global-nav-item">로그인</a> -->
                 <router-link to="/login" class="global-nav-item" v-if="isLogined">로그인</router-link>
-                <a href="" class="global-nav-item" v-if="isLogined">회원가입</a>
-                <a href="" class="global-nav-item" v-if="isLogined">마이페이지</a>
+                <a href="#" class="global-nav-item" v-if="isLogined">회원가입</a>
+                <a href="#" class="global-nav-item" v-if="isLogined">마이페이지</a>
             </div>
         </nav>
 

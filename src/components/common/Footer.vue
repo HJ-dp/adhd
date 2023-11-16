@@ -4,11 +4,11 @@
         <div class="footer-container-wrapper">
 
             <div class="footer-sitemap">
-                <div class="footer-sitemap-links">상품보기</div>
-                <div class="footer-sitemap-links">오픈마켓</div>
-                <div class="footer-logo"></div>
-                <div class="footer-sitemap-links">로그인</div>
-                <div class="footer-sitemap-links">회원가입</div>
+                <a href="#"  class="footer-sitemap-links">상품보기</a>
+                <a href="#"  class="footer-sitemap-links">오픈마켓</a>
+                <a href="#"  class="footer-logo"></a>
+                <a href="#"  class="footer-sitemap-links">로그인</a>
+                <a href="#"  class="footer-sitemap-links">회원가입</a>
             </div>
             <div class="footer-sns-links">
                 <a href="#" class="icon footer-sns-item"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -41,6 +41,11 @@
     max-width: 1024px;
     justify-content: center;
     align-items: center;
+}
+
+a:hover {
+    transition:0.2s;
+    transform: scale(1.05);
 }
 
 /* 로고 */
