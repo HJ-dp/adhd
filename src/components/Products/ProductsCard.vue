@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-// const hot = ref(true);
+const hot = ref(false);
 const isNew = ref(true);
 
 defineProps({
@@ -55,8 +55,7 @@ function joinprice(p){
 
 .new {
     color:gold;
-    
-
+    text-shadow: -1px -1px 0 rgb(29, 29, 31), 1px -1px 0 rgb(29, 29, 31), -1px 1px 0 rgb(29, 29, 31), 1px 1px 0 rgb(29, 29, 31);
 }
 
 /* 카드 */

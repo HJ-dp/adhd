@@ -19,7 +19,6 @@ export const useProductStore = defineStore('product', () => {
     axios.get(REST_PRODUCT_API+`/bestProducts`)
     .then((res)=>{
       bestProductList.value = res.data
-      console.log(res.data);
     })
   }
 
@@ -27,7 +26,6 @@ export const useProductStore = defineStore('product', () => {
     axios.get(REST_PRODUCT_API+`/latelyProducts`)
     .then((res)=>{
       latestProductList.value = res.data
-      console.log(res.data);
     })
   }
 
