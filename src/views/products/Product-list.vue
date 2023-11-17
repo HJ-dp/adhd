@@ -1,6 +1,5 @@
 <template>
     <div class="product-list">
-        <!-- 리스트 {{ route.params.itemcode }} -->
         <List :dynamic-props="store.ProductList"/>
     </div>
 </template>

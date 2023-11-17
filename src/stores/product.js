@@ -7,7 +7,7 @@ export const useProductStore = defineStore('product', () => {
   const ProductList = ref([]);
   const bestProductList = ref();
   const latestProductList = ref();
-
+  const product = ref();
   const getProductList = function (id) {
     axios.get(REST_PRODUCT_API+`/list/${id}`)
     .then((res)=>{
@@ -29,5 +29,12 @@ export const useProductStore = defineStore('product', () => {
     })
   }
 
-  return { ProductList, getProductList, bestProductList, getBestList, latestProductList, getLatestList }
+  function getProduct(productId) {
+    axios.get(REST_PRODUCT_API+`/${productId}`)
+    .then((res)=>{
+      product.value = res.data;
+    })
+  }
+
+  return { ProductList, getProductList, bestProductList, getBestList, latestProductList, getLatestList,product, getProduct}
 })

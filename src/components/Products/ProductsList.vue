@@ -1,6 +1,5 @@
 <template>
     <div class="List-container">
-        <!-- {{ dynamicProps }} -->
         <card v-for="i in dynamicProps" :dynamic-props="i" :key="i.productId"/>
     </div>
 </template>
