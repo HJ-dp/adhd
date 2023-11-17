@@ -22,4 +22,4 @@ export const useUserStore = defineStore('user', () => {
     })
   }
   return { userLogin }
-})
+}, { persist:true})

@@ -10,7 +10,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: { transition: 'slide-left' },
     },{
       path: '/login',
       name: 'login',
@@ -18,15 +19,18 @@ const router = createRouter({
     },{
       path: '/goods',
       name: 'goods',
-      component: ProductView,
-      props: {'type':1},
+      component: ProductView, 
       children:[
         {
-          path: "/goods/:itemcode",
+          path: "",
           name: 'goods_List',
           component: goods_ListView
         },{
-          path: "/goods/:productId",
+          path: ":itemcode",
+          name: 'goods_List',
+          component: goods_ListView
+        },{
+          path: "detail/:productId",
           name: 'goods_Detail',
           component: goods_Detail
         },

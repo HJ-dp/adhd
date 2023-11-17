@@ -3,7 +3,7 @@
         <theBanner />
         <div style="height: 444px;"></div>
         <localnav/>
-        <router-view :dynamic-props="type"></router-view>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -19,7 +19,7 @@ const props = defineProps(["type"]);
     flex-direction: column;
     width: 100%;
     max-width: 1200px;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     margin-left: auto;
     margin-right: auto;

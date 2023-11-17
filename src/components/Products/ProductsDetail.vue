@@ -1,29 +1,36 @@
 <template>
     <div class="detail-container">
-        {{ store.product }}
-        <div class="card-img" :style="{ backgroundImage: `url(${store.product.productInfoImg})`}" alt="상품 사진"></div>
+        <content :dynamic-props="store.product"/>
+        <info :dynamic-props="store.product?.productInfoImg"/>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import {useProductStore} from '@/stores/product';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useProductStore } from '@/stores/product';
 import { useRoute } from 'vue-router';
+import content from './ProductsContent.vue';
+import info from './ProductsInfo.vue';
+
 const store = useProductStore();
 const route = useRoute();
-const pro = ref();
 const props = defineProps({
     id : String,
 });
 
 onMounted( async ()=>{
-    pro.value = await store.getProduct(route.params.productId);
+    await store.getProduct(route.params.productId);
 })
-
+onUnmounted(()=>{
+    store.removeProduct();
+})
 
 </script>
 
 <style scoped>
+.detail-container{
+    width: 100%;
+}
 .card-img{
     width:100%;
     border-radius: 10px;
