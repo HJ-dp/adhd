@@ -1,273 +1,305 @@
 <template>
-    <div :class="{'container':true, 'active':toggle}" id="container">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <div class="form-container sign-up">
-            <form>
-                <h1>회원 가입</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>환영합니다.</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>가입</button>
-            </form>
+    <div class="regist-box">
+        <h1>회원가입</h1>
+        <div class="input-box">
+            <input type="text" v-model="inputId" name="inputId" id="inputId" autocomplete="off" required>
+            <label for="inputId" :class="{ 'warning': idwar }">아이디</label>
+            <p>{{ idcheck }}</p>
         </div>
-        <div class="form-container sign-in">
-            <form>
-                <h1>로그인</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>로그인 정보를 입력하세요.</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="#">암호를 잊으셨나요?</a>
-                <button>로그인</button>
-            </form>
+        <div class="input-box">
+            <input type="password" v-model="inputPw" name="inputPw" id="inputPw" autocomplete="off" required>
+            <label for="inputPw" :class="{ 'warning': pwwar }">비밀번호</label>
+            <p>{{ pwcheck }}</p>
         </div>
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>안녕하세요!</h1>
-                    <p>계정 정보를 입력하거나 소셜 로그인을 이용하세요.</p>
-                    <button @click="toggle = !toggle" class="hidden" id="login">로그인</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>하이욤</h1>
-                    <p>회원가입 하거나 소셜 로그인을 이용하세요.</p>
-                    <button @click="toggle = !toggle"  class="hidden" id="register">회원가입</button>
-                </div>
-            </div>
+        <div class="input-box">
+            <input type="password" v-model="inputcheckPw" name="inputcheckPw" id="inputcheckPw" autocomplete="off" required>
+            <label for="inputcheckPw" :class="{ 'warning': pwchwar }">비밀번호 확인</label>
+            <p>{{ pwcheckcheck }}</p>
+        </div>
+        <div class="input-box">
+            <input type="text" v-model="inputName" name="inputName" id="inputName" autocomplete="off" required>
+            <label for="inputName" :class="{ 'warning': namewar }">이름</label>
+            <p>{{ namecheck }}</p>
+        </div>
+        <div class="input-box">
+            <input type="text" v-model="inputPhone" name="inputPhone" id="inputPhone" autocomplete="off" required>
+            <label for="inputPhone" :class="{ 'warning': phonewar }">전화번호</label>
+            <p>{{ phonecheck }}</p>
+        </div>
+        <div class="input-box">
+            <input type="text" v-model="inputEmail" name="inputEmail" id="inputEmail" autocomplete="off" required>
+            <label for="inputEmail" :class="{ 'warning': emailwar }">이메일</label>
+            <p>{{ emailcheck }}</p>
+        </div>
+        <div class="input-box">
+            <input type="text" v-model="inputNick" name="inputNick" id="inputNick" autocomplete="off" required>
+            <label for="inputNick" :class="{ 'warning': nickwar }">닉네임</label>
+            <p>{{ nickcheck }}</p>
+        </div>
+
+        <div class="btn-box">
+            <button @click="vaildationCheck()">회원가입</button>
         </div>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-const toggle = ref(true);
+import { useUserStore } from '@/stores/user';
+import { useRouter } from 'vue-router';
+const store = useUserStore();
+const router = useRouter();
+
+const inputId = ref(123);
+const inputPw = ref(123);
+const inputcheckPw = ref(123);
+const inputPhone = ref('12312331234');
+const inputName = ref(123);
+const inputEmail = ref('123@123.com');
+const inputNick = ref(123);
+
+const idcheck = ref();
+const pwcheck = ref();
+const pwcheckcheck = ref();
+const phonecheck = ref();
+const namecheck = ref();
+const emailcheck = ref();
+const nickcheck = ref();
+
+const idwar = ref(false);
+const pwwar = ref(false);
+const pwchwar = ref(false);
+const phonewar = ref(false);
+const namewar = ref(false);
+const emailwar = ref(false);
+const nickwar = ref(false);
+
+function vaildationCheck() {
+    idcheck.value = "";
+    pwcheck.value = "";
+    pwcheckcheck.value = "";
+    phonecheck.value="";
+    namecheck.value = "";
+    emailcheck.value = "";
+    nickcheck.value = "";
+    let ok = true;
+
+    if (!inputId.value) {
+        idwar.value = true;
+        idcheck.value = '아이디를 입력해주세요'
+        ok = false;
+    }
+    if (!inputPw.value) {
+        pwwar.value = true;
+        pwcheck.value = '비밀번호를 입력해주세요'
+        ok = false;
+    }
+    if (inputPw.value != inputcheckPw.value) {
+        pwchwar.value = true;
+        pwcheckcheck.value = '입력한 비밀번호가 일치하지 않습니다.'
+        ok = false;
+    }
+    if (!inputName.value) {
+        namewar.value = true;
+        namecheck.value = '이름을 입력해주세요'
+        ok = false;
+    }
+    if (!inputPhone.value) {
+        phonewar.value = true;
+        phonecheck.value = '전화번호를 입력해주세요'
+        ok = false;
+    } else if (!checkPhone(inputPhone.value)){
+        phonewar.value = true;
+        phonecheck.value = '올바른 전화번호 형식으로 입력해주세요'
+        ok = false;
+    }
+    if (!inputEmail.value) {
+        emailwar.value = true;
+        emailcheck.value = '이메일을 입력해주세요'
+        ok = false;
+    }
+    else if (!checkEmail(inputEmail.value)) {
+        emailwar.value = true;
+        emailcheck.value = '올바른 이메일 형식으로 입력해주세요'
+        ok = false;
+    }
+    if (!inputNick.value) {
+        nickwar.value = true;
+        nickcheck.value = '닉네임을 입력해주세요'
+        ok = false;
+    }
+
+    setTimeout(() => {
+        idwar.value = false;
+        pwwar.value = false;
+        pwchwar.value = false;
+        phonewar.value = false;
+        namewar.value = false;
+        emailwar.value = false;
+        nickwar.value = false;
+    }, 1000)
+    if (ok) {
+        regist();
+    }
+}
+
+async function regist() {
+    let user = {
+        userId : inputId.value,
+        userPw : inputPw.value,
+        userName : inputName.value,
+        userPhone : inputPhone.value,
+        userEmail :inputEmail.value,
+        userNickname : inputNick.value,
+        userStatus : ""
+    };
+    // console.log(user);
+    await store.regist(user);
+    router.push({name:'login'});
+}
+
+function checkEmail(email) {
+    let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    if (regExp.test(email)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkPhone(phone) {
+    let regExp = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g;
+    if (regExp.test(phone)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
-
-body{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+.regist-box {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    gap: 1em;
+    background-color: rgb(0, 0, 0, 0.3);
+    padding: 3em;
+    border-radius: 25px;
+    text-align: center;
+    z-index: 3;
+    margin-top: 12rem;
 }
 
-.container{
-    background-color: #fff;
-    border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+.regist-box h1 {
+    font-size: 24px;
+    color: white;
+}
+
+.regist-box input {
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    padding: 0.5em 1em;
+    width: 50vw;
+    max-width: 350px;
+    height: 18px;
+    background-color: transparent;
+}
+
+.input-box {
     position: relative;
-    overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
+    margin-top: 1em;
 }
 
-.container p{
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
-    margin: 20px 0;
-}
-
-.container span{
-    font-size: 12px;
-}
-
-.container a{
-    color: #333;
-    font-size: 13px;
-    text-decoration: none;
-    margin: 15px 0 10px;
-}
-
-.container button{
-    background-color: #1d477d;
-    color: #fff;
-    font-size: 12px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 8px;
+.input-box p {
+    color: red;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
+    text-shadow: 1px 1px white;
+    text-align: end;
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    z-index: -1;
+}
+
+.input-box:first-child {
+    margin-top: 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 5px;
+    left: 13px;
+    transition: all 0.3s ease;
+    font-size: 17px;
+    color: white;
+    font-weight: 600;
+}
+
+.input-box label.warning{
+     color: red !important;
+    animation: warning .3s ease;
+    animation-iteration-count: 3;
+}
+
+@keyframes warning {
+    0% {
+        transform: translateX(-5px);
+    }
+
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.input-box input:focus+label,
+.input-box input:valid+label {
+    top: -10px;
+    font-size: 12px;
+    color: rgb(74, 199, 213);
+}
+
+
+.btn-box {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: space-between;
+}
+
+.btn-box button {
+    height: 40px;
+    color: white;
+    border-radius: 25px;
+    border: 1px solid gray;
     cursor: pointer;
 }
 
-.container button.hidden{
-    background-color: transparent;
-    border-color: #fff;
+.btn-box button:hover {
+    border: 1px solid white;
 }
 
-.container form{
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    height: 100%;
+.btn-box button:active {
+    border: 3px solid white;
 }
 
-.container input{
-    background-color: #eee;
-    border: none;
-    margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 8px;
-    width: 100%;
-    outline: none;
+
+.btn-box button:first-child {
+    background-color: rgb(29, 70, 125);
 }
 
-.form-container{
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
-}
-
-.sign-in{
-    left: 0;
-    width: 50%;
-    z-index: 2;
-}
-
-.container.active .sign-in{
-    transform: translateX(100%);
-}
-
-.sign-up{
-    left: 0;
-    width: 50%;
-    opacity: 0;
-    z-index: 1;
-}
-
-.container.active .sign-up{
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: move 0.6s;
-}
-
-@keyframes move{
-    0%, 49.99%{
-        opacity: 0;
-        z-index: 1;
-    }
-    50%, 100%{
-        opacity: 1;
-        z-index: 5;
-    }
-}
-
-.social-icons{
-    margin: 20px 0;
-}
-
-.social-icons a{
-    border: 1px solid #ccc;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
-}
-
-.toggle-container{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-    border-radius: 150px 0 0 100px;
-    z-index: 1000;
-}
-
-.container.active .toggle-container{
-    transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
-}
-
-.toggle{
-    background-color: #1d477d;
-    height: 100%; 
-    background: linear-gradient(to right, #5c8fbb, #1d477d);
-    color: #fff;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
-
-.container.active .toggle{
-    transform: translateX(50%);
-}
-
-.toggle-panel{
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 30px;
-    text-align: center;
-    top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
-
-.toggle-left{
-    transform: translateX(-200%);
-}
-
-.container.active .toggle-left{
-    transform: translateX(0);
-}
-
-.toggle-right{
-    right: 0;
-    transform: translateX(0);
-}
-
-.container.active .toggle-right{
-    transform: translateX(200%);
+.btn-box button:last-child {
+    background-color: rgb(7, 29, 61);
 }
 </style>
-
-
-
