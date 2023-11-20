@@ -13,11 +13,12 @@ export const useUserStore = defineStore('user', () => {
             url: REST_USER_API + `login`,
             method: 'POST',
             params: user
-
         })
         .then((res) => {
             let token = res.data.access_token;
             localStorage.setItem("token", token);
+            localStorage.setItem("User", user.id);
+            sessionStorage.setItem("token", token);
             loginuser.value = true;
         })
         .catch((res)=>{
@@ -31,6 +32,8 @@ export const useUserStore = defineStore('user', () => {
 
     const logout = function () {
         localStorage.removeItem("token");
+        localStorage.removeItem("User");
+        sessionStorage.removeItem("token");
         loginuser.value = false;
     }
 

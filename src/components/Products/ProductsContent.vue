@@ -30,8 +30,7 @@
             <div class="line"></div>
         </div>
     </div>
-    <hr class='hr-solid'/>
-    <br>
+    <!-- <br> -->
 </template>
 <script setup>
 import { ref, computed } from 'vue';
