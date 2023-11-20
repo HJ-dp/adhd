@@ -23,6 +23,7 @@
                         <button @click="increaseCnt">+</button>
                         <button @click="decreaseCnt">-</button>
                     </div>
+
                     <!-- {{ totalPrice }} -->
                 </div>
             </div>

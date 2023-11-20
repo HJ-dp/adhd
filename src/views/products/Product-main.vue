@@ -10,7 +10,6 @@
 <script setup>
 import localnav from '../../components/Products/ProductsNav.vue'
 import theBanner from '../../components/banner/teet.vue'
-const props = defineProps(["type"]);
 </script>
 
 <style scoped>
