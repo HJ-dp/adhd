@@ -44,12 +44,9 @@
 </template>
 
 <script setup>
-import Swal from 'sweetalert2/src/sweetalert2.js'
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
-import { useRouter } from 'vue-router';
 const store = useUserStore();
-const router = useRouter();
 
 const inputId = ref(123);
 const inputPw = ref(123);
@@ -154,14 +151,7 @@ async function regist() {
         userNickname: inputNick.value,
         userStatus: ""
     };
-    // console.log(user);
     await store.regist(user);
-    Swal.fire({
-        title: "Good job!",
-        text: "You clicked the button!",
-        icon: "success"
-    });
-    router.push({ name: 'login' });
 }
 
 function checkEmail(email) {
