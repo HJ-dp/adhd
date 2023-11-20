@@ -20,9 +20,10 @@
                     <h1>수량</h1>
                     <div class="btnBox">
                         {{ cnt }}
-                        <button>+</button>
-                        <button>-</button>
+                        <button @click="increaseCnt">+</button>
+                        <button @click="decreaseCnt">-</button>
                     </div>
+                    <!-- {{ totalPrice }} -->
                 </div>
             </div>
             <div class="line"></div>
@@ -32,20 +33,33 @@
     <br>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const cnt = ref(0);
+
+
+function increaseCnt() {
+    if(cnt.value!= 100){
+        cnt.value++;
+    }
+}
+
+function decreaseCnt() {
+    if(cnt.value!= 0){
+        cnt.value--;
+    }
+}
 
 const props = defineProps({
     dynamicProps: Object,
 })
 
-
-
 function joinprice(p) {
     if (p ?? null)
         return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
+
+
 </script>
 
 <style scoped>

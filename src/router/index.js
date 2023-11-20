@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import RegistView from '../views/regist.vue'
+import LoginView from '../views/Login.vue'
+import Loginform from '../components/user/login.vue'
+import Registform from '../components/user/regist.vue'
 import ProductView from '../views/products/Product-main.vue';
 import goods_ListView from '../views/products/Product-list.vue'
 import goods_Detail from '../components/Products/ProductsDetail.vue'
@@ -13,9 +15,20 @@ const router = createRouter({
       component: HomeView,
       meta: { transition: 'slide-left' },
     },{
-      path: '/login',
-      name: 'login',
-      component: RegistView
+      path: '/user',
+      name: 'user',
+      component: LoginView,
+      children:[
+        {
+          path: '',
+          name: 'login',
+          component: Loginform
+        },{
+          path: 'regist',
+          name: 'regist',
+          component: Registform
+        },
+      ]
     },{
       path: '/goods',
       name: 'goods',

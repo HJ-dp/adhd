@@ -2,32 +2,40 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios';
 
-const REST_PRODUCT_API = 'http://localhost:8080/api/user'
-export const useProductStore = defineStore('product', () => {
-  const ProductList = ref([]);
-  const bestProductList = ref();
-  const latestProductList = ref();
+const REST_USER_API = 'http://localhost:8080/api/'
+export const useUserStore = defineStore('user', () => {
+  
+  const loginuser = ref(false);
 
-  const getProductList = function (id) {
-    axios.get(REST_PRODUCT_API+`/list/${id}`)
+  const login = function (user) {
+    axios({
+      url : REST_USER_API+`login`,
+      method: 'POST',
+      params : user
+
+    })
     .then((res)=>{
-      ProductList.value = res.data
+      let token = res.data.access_token;
+      localStorage.setItem("token", token);
+      loginuser.value = true;
     })
   }
 
-  const getBestList = function () {
-    axios.get(REST_PRODUCT_API+`/bestProducts`)
+  const logout = function(){
+    localStorage.removeItem("token");
+    loginuser.value = false;
+  }
+
+  const regist = function (user) {
+    axios({
+      url : REST_USER_API+`signup`,
+      method: 'POST',
+      data : user,
+    })
     .then((res)=>{
-      bestProductList.value = res.data
+      console.log(res.data);
     })
   }
 
-  const getLatestList = function () {
-    axios.get(REST_PRODUCT_API+`/latelyProducts`)
-    .then((res)=>{
-      latestProductList.value = res.data
-    })
-  }
-
-  return { ProductList, getProductList, bestProductList, getBestList, latestProductList, getLatestList }
+  return { login, regist, logout, loginuser }
 }, { persist:true})
