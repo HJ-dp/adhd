@@ -30,4 +30,4 @@ export const useProductStore = defineStore('product', () => {
   }
 
   return { ProductList, getProductList, bestProductList, getBestList, latestProductList, getLatestList }
-})
+}, { persist:true})

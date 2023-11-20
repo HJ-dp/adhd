@@ -44,6 +44,7 @@
 </template>
 
 <script setup>
+import Swal from 'sweetalert2/src/sweetalert2.js'
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { useRouter } from 'vue-router';
@@ -78,7 +79,7 @@ function vaildationCheck() {
     idcheck.value = "";
     pwcheck.value = "";
     pwcheckcheck.value = "";
-    phonecheck.value="";
+    phonecheck.value = "";
     namecheck.value = "";
     emailcheck.value = "";
     nickcheck.value = "";
@@ -108,7 +109,7 @@ function vaildationCheck() {
         phonewar.value = true;
         phonecheck.value = '전화번호를 입력해주세요'
         ok = false;
-    } else if (!checkPhone(inputPhone.value)){
+    } else if (!checkPhone(inputPhone.value)) {
         phonewar.value = true;
         phonecheck.value = '올바른 전화번호 형식으로 입력해주세요'
         ok = false;
@@ -145,17 +146,22 @@ function vaildationCheck() {
 
 async function regist() {
     let user = {
-        userId : inputId.value,
-        userPw : inputPw.value,
-        userName : inputName.value,
-        userPhone : inputPhone.value,
-        userEmail :inputEmail.value,
-        userNickname : inputNick.value,
-        userStatus : ""
+        userId: inputId.value,
+        userPw: inputPw.value,
+        userName: inputName.value,
+        userPhone: inputPhone.value,
+        userEmail: inputEmail.value,
+        userNickname: inputNick.value,
+        userStatus: ""
     };
     // console.log(user);
     await store.regist(user);
-    router.push({name:'login'});
+    Swal.fire({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success"
+    });
+    router.push({ name: 'login' });
 }
 
 function checkEmail(email) {
@@ -238,8 +244,8 @@ function checkPhone(phone) {
     font-weight: 600;
 }
 
-.input-box label.warning{
-     color: red !important;
+.input-box label.warning {
+    color: red !important;
     animation: warning .3s ease;
     animation-iteration-count: 3;
 }

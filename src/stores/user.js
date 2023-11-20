@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 
 const REST_USER_API = 'http://localhost:8080/api/'
 export const useUserStore = defineStore('user', () => {
@@ -34,7 +35,19 @@ export const useUserStore = defineStore('user', () => {
     })
     .then((res)=>{
       console.log(res.data);
+      Swal.fire({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success"
+    });
+    return;
     })
+    .catch((res)=>{
+      console.log(res);
+      return;
+    })
+    
+    
   }
 
   return { login, regist, logout, loginuser }
