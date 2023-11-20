@@ -25,6 +25,7 @@ import theFooter from './components/common/Footer.vue'
 }
 .main-c {
   /* margin-top: 356px; */
-  min-height: calc(100vh - 35px);
+  min-height: calc(100vh);
 }
+
 </style>
