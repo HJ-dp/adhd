@@ -6,6 +6,8 @@ import Registform from '../components/user/regist.vue'
 import ProductView from '../views/products/Product-main.vue';
 import goods_ListView from '../views/products/Product-list.vue'
 import goods_Detail from '../components/Products/ProductsDetail.vue'
+import MypageView from '../views/Mypage.vue';
+import Mypage_list from '../views/Mypage.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -13,7 +15,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: { transition: 'slide-left' },
+      
     },{
       path: '/user',
       name: 'user',
@@ -22,11 +24,13 @@ const router = createRouter({
         {
           path: '',
           name: 'login',
-          component: Loginform
+          component: Loginform,
+          meta: { transition: 'slide-left' },
         },{
           path: 'regist',
           name: 'regist',
-          component: Registform
+          component: Registform,
+          meta: { transition: 'slide-rigth' },
         },
       ]
     },{
@@ -47,9 +51,19 @@ const router = createRouter({
           name: 'goods_Detail',
           component: goods_Detail
         },
-
       ]
-    },
+    },{
+      path:'/mypage',
+      name:'mypage',
+      component:MypageView,
+      children:[
+        {
+          path: "",
+          name: 'mypage-main',
+          component: Mypage_list,
+        },
+      ]
+    }
   ]
 })
 

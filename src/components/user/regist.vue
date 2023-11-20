@@ -48,13 +48,13 @@ import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 const store = useUserStore();
 
-const inputId = ref(123);
-const inputPw = ref(123);
-const inputcheckPw = ref(123);
-const inputPhone = ref('12312331234');
-const inputName = ref(123);
-const inputEmail = ref('123@123.com');
-const inputNick = ref(123);
+const inputId = ref();
+const inputPw = ref();
+const inputcheckPw = ref();
+const inputPhone = ref();
+const inputName = ref();
+const inputEmail = ref();
+const inputNick = ref();
 
 const idcheck = ref();
 const pwcheck = ref();
@@ -202,6 +202,7 @@ function checkPhone(phone) {
     max-width: 350px;
     height: 18px;
     background-color: transparent;
+    color : white;
 }
 
 .input-box {
@@ -210,9 +211,9 @@ function checkPhone(phone) {
 }
 
 .input-box p {
-    color: red;
+    color: crimson;
     font-weight: 600;
-    text-shadow: 1px 1px white;
+    /* text-shadow: 1px 1px white; */
     text-align: end;
     position: absolute;
     top: 5px;
