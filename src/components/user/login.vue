@@ -1,27 +1,28 @@
 <template>
-    <div class="login-box">
-      <h1>로그인</h1>
-      <div class="input-box">
-        <input type="text" v-model="inputId" name="inputId" id="inputId" autocomplete="off"  required>
-        <label for="inputId" :class="{'warning':idwar}">아이디</label>
-        <p>{{ idcheck }}</p>
-      </div>
-      <div class="input-box">
-        <input type="password" v-model="inputPw" name="inputId" id="inputPw" autocomplete="off" required>
-        <label for="inputPw" :class="{'warning':pwwar}">비밀번호</label>
-        <p>{{ pwcheck }}</p>
-      </div>
-      <div class="btn-box">
-        <button @click="vaildationCheck()">로그인</button>
-        <button @click="$router.push({name : 'regist'})">회원가입</button>
-      </div>
+  <div class="login-box">
+    <h1>로그인</h1>
+    <div class="input-box">
+      <input type="text" v-model="inputId" name="inputId" id="inputId" autocomplete="off" required>
+      <label for="inputId" :class="{ 'warning': idwar }">아이디</label>
+      <p>{{ idcheck }}</p>
     </div>
+    <div class="input-box">
+      <input type="password" v-model="inputPw" name="inputId" id="inputPw" autocomplete="off" required>
+      <label for="inputPw" :class="{ 'warning': pwwar }">비밀번호</label>
+      <p>{{ pwcheck }}</p>
+    </div>
+    <div class="btn-box">
+      <button @click="vaildationCheck()">로그인</button>
+      <button @click="$router.push({ name: 'regist' })">회원가입</button>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useUserStore } from '../../stores/user';
 import router from '../../router';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 
 const store = useUserStore();
 
@@ -38,62 +39,78 @@ const pwwar = ref(false);
 function vaildationCheck() {
   idcheck.value = "";
   pwcheck.value = "";
-    let ok = true;
-  if(!inputId.value ){
-    idwar.value=true;
+  let ok = true;
+  if (!inputId.value) {
+    idwar.value = true;
     idcheck.value = '아이디를 입력해주세요'
     ok = false;
   }
-  if(!inputPw.value ){
-    pwwar.value=true;
+  if (!inputPw.value) {
+    pwwar.value = true;
     pwcheck.value = '비밀번호를 입력해주세요'
     ok = false;
   }
 
-  setTimeout(()=>{
-    idwar.value=false;
-    pwwar.value=false;
-  },1000)
+  setTimeout(() => {
+    idwar.value = false;
+    pwwar.value = false;
+  }, 1000)
 
-  if(ok){
+  if (ok) {
     login();
   }
 }
 
-async function login(){
-    let user = {
-        id : inputId.value,
-        pw : inputPw.value
+async function login() {
+  let user = {
+    id: inputId.value,
+    pw: inputPw.value
+  }
+  await store.login(user);
+  let timerInterval;
+  Swal.fire({
+    title: "로그인 중입니다!",
+    html: "<b></b>밀리초 내에 로그인 됩니다.",
+    timer: 500,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      const timer = Swal.getPopup().querySelector("b");
+      timerInterval = setInterval(() => {
+        timer.textContent = `${Swal.getTimerLeft()}`;
+      }, 100);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+      router.push({name:'main'});
     }
-    await store.login(user);
-    router.push({name:'home'});
+  })
 }
 </script>
 
 <style scoped>
-
-.login-container{
+.login-container {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:2em;
+  gap: 2em;
   z-index: 1;
-  background: linear-gradient(to right, rgb(92,142,187), rgb(29,70,125));
+  background: linear-gradient(to right, rgb(92, 142, 187), rgb(29, 70, 125));
 }
 
-.login-container h1{
+.login-container h1 {
   font-size: 24px;
   color: white;
 }
 
-.login-box{
+.login-box {
   display: flex;
   flex-direction: column;
-  gap:1em;
-  background-color: rgb(0,0,0,0.3);
+  gap: 1em;
+  background-color: rgb(0, 0, 0, 0.3);
   padding: 3em;
   border-radius: 25px;
   text-align: center;
@@ -109,28 +126,32 @@ async function login(){
   max-width: 350px;
   height: 18px;
   background-color: transparent;
-  color:white;
+  color: white;
 }
+
 .input-box {
   position: relative;
   margin-top: 1em;
 }
+
 .input-box p {
-  color:red;
+  color: red;
   font-weight: 600;
   text-shadow: 1px 1px white;
-  text-align:end;
+  text-align: end;
   position: absolute;
-  top:5px;
+  top: 5px;
   right: 0px;
   z-index: -1;
 }
 
-.input-box:first-child{ margin-top: 0; }
+.input-box:first-child {
+  margin-top: 0;
+}
 
-.input-box label{
+.input-box label {
   position: absolute;
-  top:5px;
+  top: 5px;
   left: 13px;
   transition: all 0.3s ease;
   font-size: 17px;
@@ -139,31 +160,42 @@ async function login(){
 }
 
 .input-box label.warning {
-  color:red;
+  color: red;
   animation: warning .3s ease;
   animation-iteration-count: 3;
 }
 
 @keyframes warning {
-  0% {transform: translateX(-5px);}
-  25% {transform: translateX(5px);}
-  50% {transform: translateX(-5px);}
-  75% {transform: translateX(5px);}
+  0% {
+    transform: translateX(-5px);
+  }
+
+  25% {
+    transform: translateX(5px);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
 }
 
-.input-box input:focus + label,
-.input-box input:valid + label {
-  top:-10px;
+.input-box input:focus+label,
+.input-box input:valid+label {
+  top: -10px;
   font-size: 12px;
-  color: rgb(74,199,213);
+  color: rgb(74, 199, 213);
 }
 
 
-.btn-box{
+.btn-box {
   margin-top: 1em;
   display: flex;
   flex-direction: column;
-  gap:1em;
+  gap: 1em;
   justify-content: space-between;
 }
 
@@ -179,16 +211,15 @@ async function login(){
   border: 1px solid white;
 }
 
-.btn-box button:active  {
+.btn-box button:active {
   border: 3px solid white;
 }
 
 
 .btn-box button:first-child {
-  background-color: rgb(29,70,125);
+  background-color: rgb(29, 70, 125);
 }
 
 .btn-box button:last-child {
-  background-color: rgb(7,29,61);
-}
-</style>
+  background-color: rgb(7, 29, 61);
+}</style>

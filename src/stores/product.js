@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios';
 
-const REST_PRODUCT_API = 'http://localhost:8080/api/product'
+const REST_PRODUCT_API = 'http://localhost:8080/api/product/'
 export const useProductStore = defineStore('product', () => {
   const ProductList = ref([]);
   const bestProductList = ref();
@@ -17,21 +17,21 @@ export const useProductStore = defineStore('product', () => {
   }
 
   const getBestList = function () {
-    axios.get(REST_PRODUCT_API+`/bestProducts`)
+    axios.get(REST_PRODUCT_API+`bestProducts`)
     .then((res)=>{
       bestProductList.value = res.data
     })
   }
 
   const getLatestList = function () {
-    axios.get(REST_PRODUCT_API+`/latelyProducts`)
+    axios.get(REST_PRODUCT_API+`latelyProducts`)
     .then((res)=>{
       latestProductList.value = res.data
     })
   }
 
   function getProduct(productId) {
-    axios.get(REST_PRODUCT_API+`/${productId}`)
+    axios.get(REST_PRODUCT_API+`${productId}`)
     .then((res)=>{
       product.value = res.data;
     })

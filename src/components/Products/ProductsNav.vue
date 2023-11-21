@@ -1,7 +1,7 @@
 <template>
     <div class="products-nav-container">
         <nav class="product-nav">
-            <router-link :to="{name:'goods_List',params:{itemcode:'1'}}" class="product-nav-item" title="클릭하면 유니폼들을 모아볼 수 있어요">유니폼</router-link>
+            <router-link :to="{name:'goods_List',params:{itemcode:'1'}}" class="product-nav-item" title="클릭하면 유니폼들을 모아볼 수 있어요">회원 유니폼</router-link>
             <router-link :to="{name:'goods_List',params:{itemcode:'2'}}" class="product-nav-item" title="클릭하면 모자들을 모아볼 수 있어요">모자</router-link>
             <router-link :to="{name:'goods_List',params:{itemcode:'3'}}" class="product-nav-item" title="클릭하면 의류들을 모아볼 수 있어요">의류</router-link>
             <router-link :to="{name:'goods_List',params:{itemcode:'4'}}" class="product-nav-item" title="클릭하면 팬상품들을 모아볼 수 있어요">팬상품</router-link>
