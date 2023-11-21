@@ -1,6 +1,6 @@
 <template>
     <div class=" box container">
-        <div class="title" id="dung">{{ store.User.id }}님 환영합니다</div>
+        <div class="title" id="dung">{{ store.User?.id }}님 환영합니다</div>
     </div>
 </template>
 

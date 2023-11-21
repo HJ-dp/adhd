@@ -14,7 +14,7 @@
 
 <script setup>
 import mypagebanner from '../components/banner/LoginBanner.vue';
-
+import mypagenav from '../components/mypage/MypageNav.vue'
 </script>
 
 <style scoped>
@@ -31,7 +31,7 @@ import mypagebanner from '../components/banner/LoginBanner.vue';
 }
 
 /* 트랜지션 */
-.slide-enter-active,
+/* .slide-enter-active,
 .slide-leave-active
 {
   transition: all 0.5s ease-out;
@@ -41,6 +41,22 @@ import mypagebanner from '../components/banner/LoginBanner.vue';
 .slide-leave-to{
   opacity: 0;
   transform: translateX(-30%);
+} */
+
+.slide-enter-active,
+.slide-leave-active
+{
+  transition: all 1s ease;
+}
+
+.slide-enter-from{
+  opacity: 0;
+  transform: translateX(-30%);
+}
+
+.slide-leave-to{
+    opacity: 0;
+    transform: translateX(30%);
 }
 
 

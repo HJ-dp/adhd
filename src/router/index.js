@@ -8,6 +8,10 @@ import goods_ListView from '../views/products/Product-list.vue'
 import goods_Detail from '../components/Products/ProductsDetail.vue'
 import MypageView from '../views/Mypage.vue';
 import Mypage_list from '../components/mypage/Mypagecont.vue';
+import myreviews from '../components/mypage/Myresult.vue'
+import myaddress from '../components/mypage/MyAddress.vue'
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -76,14 +80,20 @@ const router = createRouter({
         },{
           path: "/myaddress",
           name: 'myaddress',
-          component: Mypage_list,
+          component: myaddress,
         },{
           path: "/myreview",
           name: 'myreview',
-          component: Mypage_list,
+          props: {type : 1},
+          component: myreviews,
         },{
           path: "/myquestion",
           name: 'myquestion',
+          props:{type : 2},
+          component: myreviews,
+        },{
+          path: "mynotice",
+          name: 'mynotice',
           component: Mypage_list,
         },
       ]

@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import Swal from 'sweetalert2/src/sweetalert2.js'
 
-const REST_Question_API = 'http://localhost:8080/api/'
+const REST_Question_API = 'http://localhost:8080/api/review/'
 export const useQuestionStore = defineStore('question', () => {
   const router = useRouter();
   const QuestionList = ref();
@@ -18,7 +18,7 @@ export const useQuestionStore = defineStore('question', () => {
 
   const writeQuestion = function (Q) {
     axios({
-      url:REST_Question_API+`review`,
+      url:REST_Question_API,
       method:"POST",
       data : Q,
     })
@@ -51,7 +51,7 @@ export const useQuestionStore = defineStore('question', () => {
 
   const updateQuestion = function (r) {
     axios({
-      url : REST_Question_API+`review/update`,
+      url : REST_Question_API+`update`,
       method:"PUT",
       data: r,
     })
@@ -75,7 +75,7 @@ export const useQuestionStore = defineStore('question', () => {
 
   const removeQuestion = function (rid) {
     axios({
-      url : REST_Question_API+`review/${rid}`,
+      url : REST_Question_API+`${rid}`,
       method:"PUT",
     })
     .then(()=>{

@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import Swal from 'sweetalert2/src/sweetalert2.js'
 
-const REST_REVIEW_API = 'http://localhost:8080/api/'
+const REST_REVIEW_API = 'http://localhost:8080/api/review/'
 export const useReviewStore = defineStore('review', () => {
   const router = useRouter();
   const ReviewList = ref();
@@ -17,10 +17,17 @@ export const useReviewStore = defineStore('review', () => {
     })
   }
 
+  const reviewListmine= function(id){
+    axios.get(REST_REVIEW_API+`userReviewList?userId=${id}`)
+    .then((res)=>{
+      ReviewList.value = res.data
+    })
+  }
+
   
   const writeReview = function (R) {
     axios({
-      url:REST_REVIEW_API+`review`,
+      url:REST_REVIEW_API,
       method:"POST",
       data : R,
     })
@@ -52,7 +59,7 @@ export const useReviewStore = defineStore('review', () => {
 
   const updateReview = function (r) {
     axios({
-      url : REST_REVIEW_API+`review/update`,
+      url : REST_REVIEW_API+`update`,
       method:"PUT",
       data: r,
     })
@@ -76,7 +83,7 @@ export const useReviewStore = defineStore('review', () => {
 
   const removeReview = function (rid) {
     axios({
-      url : REST_REVIEW_API+`review/${rid}`,
+      url : REST_REVIEW_API+`${rid}`,
       method:"PUT",
     })
     .then(()=>{
@@ -101,5 +108,5 @@ export const useReviewStore = defineStore('review', () => {
   }, 1000);
   }
 
-  return { getReviewList, ReviewList, removeReviewList, writeReview, removeReview, updateReview }
+  return { getReviewList, ReviewList, removeReviewList, writeReview, removeReview, updateReview, reviewListmine }
 }, { persist:true})

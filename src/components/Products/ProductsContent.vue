@@ -28,24 +28,69 @@
                 </div>
             </div>
             <div class="line"></div>
+            <div class="btn-container">
+                <button @click="check()">♥</button>
+                <button>장바구니</button>
+                <button>바로 구매</button>
+            </div>
         </div>
+
     </div>
     <!-- <br> -->
 </template>
 <script setup>
+import Swal from 'sweetalert2/src/sweetalert2.js'
 import { ref, computed } from 'vue';
-
+import { useHeartStore } from '../../stores/mylist';
+import {useProductStore} from '@/stores/product';
 const cnt = ref(0);
 
+/////////찜////////////
+const pstore = useProductStore();
+const store = useHeartStore();
+
+const check = ()=>{
+    if (sessionStorage.getItem('token') ?? false) {
+        heart();
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "로그인이 필요한 기능입니다.",
+            text: "로그인 하시고 이용해주세요!",
+            confirmButtonColor: 'rgb(74,199,213)',
+        });
+    }
+}
+
+function heart() {
+    if(true){
+    let h = {
+        "heartId": 0,
+        "productId": pstore.product.productId,
+        "userId": localStorage.getItem('User')
+    }
+    store.heartProduct(h);
+    } else {
+        store.removeHeart(id);
+    }
+}
+
+
+
+//////////////////////
+
+
+
+//수량 카운트
 
 function increaseCnt() {
-    if(cnt.value!= 100){
+    if (cnt.value != 100) {
         cnt.value++;
     }
 }
 
 function decreaseCnt() {
-    if(cnt.value!= 0){
+    if (cnt.value != 0) {
         cnt.value--;
     }
 }
@@ -59,30 +104,32 @@ function joinprice(p) {
         return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 
+////////////////////////
 
 </script>
 
 <style scoped>
-
-.option-box{
+.option-box {
     margin: 2em;
 }
 
-.line{
+.line {
     /* width: 100% - 2em; */
     margin: 0 2em;
     height: 2px;
-    background-color: rgb(7,29,61);
+    background-color: rgb(7, 29, 61);
 }
+
 .content-container {
     display: flex;
     padding: 2em;
     /* background-color: red; */
     gap: 2em;
 }
+
 .hr-solid {
-  border : 0px;
-  border-top: 5px solid #663399;
+    border: 0px;
+    border-top: 5px solid #663399;
 }
 
 /* 이미지 박스 */
@@ -127,25 +174,31 @@ function joinprice(p) {
     font-weight: 400;
 
 }
+
 .price {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-.content-price-container{
+.content-price-container {
     margin: 2em;
     display: flex;
     flex-direction: column;
-    gap:2em;
+    gap: 2em;
+}
+
+/* 버튼박스 */
+
+.btn-container {
+    margin: 2em;
 }
 
 /* 라인 */
 
-.blackline{
+.blackline {
     background-color: black;
     height: 2px;
-    
-}
 
+}
 </style>
