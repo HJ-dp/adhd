@@ -82,7 +82,7 @@ async function login() {
     },
     willClose: () => {
       clearInterval(timerInterval);
-      router.push({name:'home'});
+      router.push({name:'main'});
     }
   })
 }
