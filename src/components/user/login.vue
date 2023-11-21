@@ -109,6 +109,7 @@ async function login(){
   max-width: 350px;
   height: 18px;
   background-color: transparent;
+  color:white;
 }
 .input-box {
   position: relative;

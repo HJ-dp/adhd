@@ -2,17 +2,25 @@
     <div class="detail-container">
         <content :dynamic-props="store.product"/>
         <info :dynamic-props="store.product?.productInfoImg"/>
+        <reviewbox :dynamic-props="rstore.ReviewList"/>
+        <QNA :dynamic-props="qstore.QuestionList"/>
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useQuestionStore } from '@/stores/question';
 import { useProductStore } from '@/stores/product';
+import { useReviewStore } from '@/stores/review';
 import { useRoute } from 'vue-router';
 import content from './ProductsContent.vue';
 import info from './ProductsInfo.vue';
+import reviewbox from '../reviews/ReviewList.vue'
+import QNA from '../questions/QuestionList.vue'
 
+const qstore = useQuestionStore();
 const store = useProductStore();
+const rstore = useReviewStore();
 const route = useRoute();
 const props = defineProps({
     id : String,
@@ -20,9 +28,13 @@ const props = defineProps({
 
 onMounted( async ()=>{
     await store.getProduct(route.params.productId);
+    await rstore.getReviewList(route.params.productId);
+    await qstore.getQuestionList(route.params.productId);
 })
 onUnmounted(()=>{
     store.removeProduct();
+    rstore.removeReviewList();
+    qstore.removeQuestionList();
 })
 
 </script>
@@ -30,6 +42,9 @@ onUnmounted(()=>{
 <style scoped>
 .detail-container{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:2em;
 }
 .card-img{
     width:100%;
@@ -40,4 +55,6 @@ onUnmounted(()=>{
     background-size: cover;
     background-position: 50% 50%;
 }
+
+
 </style>

@@ -46,17 +46,15 @@
 <script setup>
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
-import { useRouter } from 'vue-router';
 const store = useUserStore();
-const router = useRouter();
 
-const inputId = ref(123);
-const inputPw = ref(123);
-const inputcheckPw = ref(123);
-const inputPhone = ref('12312331234');
-const inputName = ref(123);
-const inputEmail = ref('123@123.com');
-const inputNick = ref(123);
+const inputId = ref();
+const inputPw = ref();
+const inputcheckPw = ref();
+const inputPhone = ref();
+const inputName = ref();
+const inputEmail = ref();
+const inputNick = ref();
 
 const idcheck = ref();
 const pwcheck = ref();
@@ -78,7 +76,7 @@ function vaildationCheck() {
     idcheck.value = "";
     pwcheck.value = "";
     pwcheckcheck.value = "";
-    phonecheck.value="";
+    phonecheck.value = "";
     namecheck.value = "";
     emailcheck.value = "";
     nickcheck.value = "";
@@ -108,7 +106,7 @@ function vaildationCheck() {
         phonewar.value = true;
         phonecheck.value = '전화번호를 입력해주세요'
         ok = false;
-    } else if (!checkPhone(inputPhone.value)){
+    } else if (!checkPhone(inputPhone.value)) {
         phonewar.value = true;
         phonecheck.value = '올바른 전화번호 형식으로 입력해주세요'
         ok = false;
@@ -145,17 +143,15 @@ function vaildationCheck() {
 
 async function regist() {
     let user = {
-        userId : inputId.value,
-        userPw : inputPw.value,
-        userName : inputName.value,
-        userPhone : inputPhone.value,
-        userEmail :inputEmail.value,
-        userNickname : inputNick.value,
-        userStatus : ""
+        userId: inputId.value,
+        userPw: inputPw.value,
+        userName: inputName.value,
+        userPhone: inputPhone.value,
+        userEmail: inputEmail.value,
+        userNickname: inputNick.value,
+        userStatus: ""
     };
-    // console.log(user);
     await store.regist(user);
-    router.push({name:'login'});
 }
 
 function checkEmail(email) {
@@ -206,6 +202,7 @@ function checkPhone(phone) {
     max-width: 350px;
     height: 18px;
     background-color: transparent;
+    color : white;
 }
 
 .input-box {
@@ -214,9 +211,9 @@ function checkPhone(phone) {
 }
 
 .input-box p {
-    color: red;
+    color: crimson;
     font-weight: 600;
-    text-shadow: 1px 1px white;
+    /* text-shadow: 1px 1px white; */
     text-align: end;
     position: absolute;
     top: 5px;
@@ -238,8 +235,8 @@ function checkPhone(phone) {
     font-weight: 600;
 }
 
-.input-box label.warning{
-     color: red !important;
+.input-box label.warning {
+    color: red !important;
     animation: warning .3s ease;
     animation-iteration-count: 3;
 }
