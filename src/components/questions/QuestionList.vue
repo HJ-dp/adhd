@@ -3,7 +3,7 @@
         <h1>상품 문의</h1>
         <div v-if="dynamicProps.length == 0">작성된 문의가 없습니다.</div>
         <QuestionColumn v-else v-for="i in dynamicProps" :dynamic-props="i" :key="i.reviewId" />
-        <button @click="check" class="writebutton">글쓰기</button>
+        <button @click="check" class="writebutton" title="이 상품에 대해 궁금하신가요? 클릭하시고 문의를 남겨주세요!">글쓰기</button>
     </div>
 </template>
 
@@ -123,6 +123,6 @@ label {
     padding: 5px 10px;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
 }
-
-.writebutton:active {}</style>
+</style>

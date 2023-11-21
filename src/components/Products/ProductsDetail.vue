@@ -2,8 +2,10 @@
     <div class="detail-container">
         <content :dynamic-props="store.product"/>
         <info :dynamic-props="store.product?.productInfoImg"/>
+        <div class="review_question">
         <reviewbox :dynamic-props="rstore.ReviewList"/>
         <QNA :dynamic-props="qstore.QuestionList"/>
+        </div>
     </div>
 </template>
 
@@ -56,5 +58,15 @@ onUnmounted(()=>{
     background-position: 50% 50%;
 }
 
+.review_question {
+    display: flex;
+    gap:2em;
+}
+
+@media (max-width: 768px) {
+    .review_question {
+    flex-direction: column;
+}
+}
 
 </style>
