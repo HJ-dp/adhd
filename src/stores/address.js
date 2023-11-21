@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import Swal from 'sweetalert2/src/sweetalert2.js'
+// test
 
 const REST_ADDRESS_API = 'http://localhost:8080/api/delivery/'
 export const useAddressStore = defineStore('address', () => {
