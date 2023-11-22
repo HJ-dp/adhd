@@ -1,11 +1,11 @@
 <template>
     <div class="grid-container">
         <router-link :to="{name:'mylist'}" class="box title list">내가 찜한</router-link>
-        <router-link :to="{name:'mycart'}" class="box title">장바구니</router-link>
+        <router-link :to="{name:'mycart'}" class="box title cart">장바구니</router-link>
         <myinfo />
         <router-link :to="{name:'myorder'}" class="box title order">주문내역</router-link>
-        <router-link :to="{name:'myaddress'}" class="box title">나의 배송지</router-link>
-        <router-link :to="{name:'myorder'}" class="box title">내 정보 수정</router-link>
+        <router-link :to="{name:'myaddress'}" class="box title delivery">나의 배송지</router-link>
+        <router-link :to="{name:'myinfo',  query: { param: store } }" class="box title edit">내 정보 수정</router-link>
         <router-link :to="{name:'myreview'}" class="box title">내가 남긴 리뷰</router-link>
         <router-link :to="{name:'myquestion'}" class="box title">내가 남긴 문의사항</router-link>
         <router-link :to="{name:'mynotice'}" class="box title notice">공지사항</router-link>
@@ -14,6 +14,13 @@
 <!-- <a href="https://kr.freepik.com/free-psd/megaphone-isolated-3d-render-icon-illustration_28788633.htm#query=3d&position=4&from_view=keyword&track=sph&uuid=8ee17b0d-502c-43bc-8730-b126a06c9ca2">작가 Xvect intern</a> 출처 Freepik -->
 <script setup>
 import myinfo from './MyInfo.vue'
+import { useUserStore } from '../../stores/user';
+import { onMounted } from 'vue';
+const store = useUserStore();
+
+onMounted(async ()=>{
+    await store.getInfo();
+})
 
 </script>
 
@@ -47,6 +54,8 @@ import myinfo from './MyInfo.vue'
 
 
 /* 이미지 삽입 */
+/* <a href="https://kr.freepik.com/free-photo/shopping-cart-or-trolley-basket-supermarket-icon-sign-or-symbol-on-white-background-3d-rendering_25289009.htm#page=4&query=3d&position=33&from_view=keyword&track=sph&uuid=28ac6885-4d3b-49e7-a01e-a948aaf20f35">작가 mamewmy</a> 출처 Freepik */
+/* 출처 <a href="https://kr.freepik.com/free-psd/3d-rendering-of-ui-icon_20546695.htm#page=4&query=3d&position=22&from_view=keyword&track=sph&uuid=28ac6885-4d3b-49e7-a01e-a948aaf20f35">Freepik</a> */
 .notice {
     background-image: url('/megaphone.jpg');
     background-size: cover;
@@ -62,6 +71,26 @@ import myinfo from './MyInfo.vue'
     background-size: cover;
     background-position: 0 40%;
 }
+
+.edit{
+    background-image: url('/pencil.jpg');
+    background-position: 50% 35%;
+    background-size: 70%;
+}
+
+.cart{
+    background-image: url('/cart.jpg');
+    background-position: 50% 70%;
+    background-size: 130%;
+}
+
+.delivery{
+    background-image: url('/delivery.jpg');
+    background-position: 0% 70%;
+    background-size: 100%;
+}
+
+/* <a href="https://kr.freepik.com/free-photo/purple-delivery-car-or-delivery-truck-transport-shipping-icon-online-shopping-concept-3d-illustration_34332885.htm#query=3d%20%ED%8A%B8%EB%9F%AD&position=2&from_view=search&track=ais&uuid=6d02dc82-d774-4bfd-a500-03a9a89e5fa0">작가 mamewmy</a> 출처 Freepik */
 
 @media (max-width:768px) {
     .grid-container{

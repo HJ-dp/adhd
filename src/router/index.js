@@ -10,6 +10,8 @@ import MypageView from '../views/Mypage.vue';
 import Mypage_list from '../components/mypage/Mypagecont.vue';
 import myreviews from '../components/mypage/Myresult.vue'
 import myaddress from '../components/mypage/MyAddressControl.vue'
+import Mypage_info from '../components/mypage/MyEdit.vue'
+import Notice from '../components/mypage/Mynotice.vue'
 
 
 const router = createRouter({
@@ -94,8 +96,13 @@ const router = createRouter({
         },{
           path: "mynotice",
           name: 'mynotice',
-          component: Mypage_list,
+          component: Notice,
+        },{
+          path: "myinfo",
+          name: 'myinfo',
+          component: Mypage_info,
         },
+
       ]
     }
   ]

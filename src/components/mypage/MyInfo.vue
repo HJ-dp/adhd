@@ -1,12 +1,18 @@
 <template>
     <div class=" box container">
         <div class="title" id="dung">{{ store.User?.id }}님 환영합니다</div>
+        <div class="btn-box">
+            <button v-if="store.userInfo.manager" class="manageBtn">관리자</button>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { useUserStore } from '../../stores/user';
 const store = useUserStore();
+
+
+
 </script>
 
 <style scoped>

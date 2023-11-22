@@ -1,50 +1,54 @@
 <template>
-    <div class="address-container">
-        <h1>배송지 등록하기</h1>
-        <div class="input-box">
-            <div class="input-box">
-                <label for="deliveryName">배송지명</label>
-                <input type="text" id="deliveryName" v-model="deliveryName" readonly>
+    <div class="row-wrapper">
+        <kakaomap />
+        <div class="address-container">
+            <h1>배송지 등록하기</h1>
+            <div class="input-box" @click="updated()">
+                <div class="input-box">
+                    <label for="deliveryName">배송지명</label>
+                    <input type="text" id="deliveryName" v-model="deliveryName" readonly>
+                </div>
+                <div class="input-box">
+                    <label for="receiverName">수신자명</label>
+                    <input type="text" id="receiverName" v-model="receiverName" readonly>
+                </div>
+                <div class="input-box">
+                    <label for="receiverPhone">수신자연락처</label>
+                    <input type="text" id="receiverPhone" v-model="receiverPhone" readonly>
+                </div>
+                <div class="input-box">
+                    <label for="additionalPhone">추가연락처(선택)</label>
+                    <input type="text" id="additionalPhone" v-model="additionalPhone" readonly>
+                </div>
+                <div class="input-box">
+                    <label for="deliveryAddress1">주소</label>
+                    <input type="text" id="deliveryAddress1" v-model="deliveryAddress1" readonly>
+                    <button class="updatebtn" @click.stop="clic()">주소찾기</button>
+                </div>
+                <div class="input-box">
+                    <label for="deliveryAddress2">상세주소</label>
+                    <input type="text" id="deliveryAddress2" v-model="deliveryAddress2" readonly>
+                </div>
+                <div class="input-box">
+                    <label for="deliveryMemo">배송메모(선택)</label>
+                    <input type="text" id="deliveryMemo" v-model="deliveryMemo" readonly>
+                </div>
+                <div class="input-box">
+                    <label for="defaultAddress">기본배송지여부(선택)</label>
+                    <input type="text" id="defaultAddress" v-model="defaultAddress" readonly>
+                </div>
             </div>
-            <div class="input-box">
-                <label for="receiverName">수신자명</label>
-                <input type="text" id="receiverName" v-model="receiverName" readonly>
+            <div class="btn-box">
+                <button @click.stop="updated">등록/수정</button>
+                <button @click.stop="send()">보내기</button>
             </div>
-            <div class="input-box">
-                <label for="receiverPhone">수신자연락처</label>
-                <input type="text" id="receiverPhone" v-model="receiverPhone" readonly>
-            </div>
-            <div class="input-box">
-                <label for="additionalPhone">추가연락처(선택)</label>
-                <input type="text" id="additionalPhone" v-model="additionalPhone" readonly>
-            </div>
-            <div class="input-box">
-                <label for="deliveryAddress1">주소</label>
-                <input type="text" id="deliveryAddress1" v-model="deliveryAddress1" readonly>
-                <button class="updatebtn" @click="clic()">주소찾기</button>
-            </div>
-            <div class="input-box">
-                <label for="deliveryAddress2">상세주소</label>
-                <input type="text" id="deliveryAddress2" v-model="deliveryAddress2" readonly>
-            </div>
-            <div class="input-box">
-                <label for="deliveryMemo">배송메모(선택)</label>
-                <input type="text" id="deliveryMemo" v-model="deliveryMemo" readonly>
-            </div>
-            <div class="input-box">
-                <label for="defaultAddress">기본배송지여부(선택)</label>
-                <input type="text" id="defaultAddress" v-model="defaultAddress" readonly>
-            </div>
-        </div>
-        <div class="btn-box">
-            <button @click="updated">등록/수정</button>
-            <button @click="send()">보내기</button>
         </div>
     </div>
 </template>
 
 <script setup>
 import Swal from 'sweetalert2/src/sweetalert2.js'
+import kakaomap from './map.vue'
 import { useAddressStore } from '@/stores/address';
 import { ref } from 'vue';
 const r = ref();
@@ -174,6 +178,13 @@ function send() {
 
 </script>
 <style>
+.row-wrapper{
+    display: flex;
+    gap:3em;
+    justify-content: center;
+    align-items: center;
+}
+
 label {
     white-space: nowrap;
 }
@@ -240,8 +251,13 @@ input {
     width: 100%;
     display: flex;
     gap: 1em;
-    margin: 2em;;
+    margin: 2em;
+    ;
     justify-content: center;
+}
+
+.btn-box button {
+    width: 100px;
 }
 
 .updatebtn {
@@ -249,6 +265,7 @@ input {
     top: 10px;
     right: -120px;
     width: 100px;
+    flex-shrink: 0;
 }
 
 .input-box {
@@ -268,6 +285,7 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 button {

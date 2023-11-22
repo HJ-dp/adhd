@@ -36,6 +36,7 @@
 </template>
 
 <script setup>
+
 defineProps({
     dynamicProps: Object,
 })

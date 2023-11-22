@@ -27,6 +27,7 @@ defineProps({
     margin:2em 0 0 0;
     display: flex;
     flex-direction: column;
+    text-align: center;
     gap:2em;
     width: 90vw; 
     max-width: 1024px;
