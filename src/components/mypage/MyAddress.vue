@@ -118,16 +118,6 @@ const updated = (async () => {
 })
 
 
-///////////////////////////
-// const t = document.getElementById("btn");
-// t.addEventListener('click', ()=>{
-//     new daum.Postcode({
-//         oncomplete: function(data) {
-//             deliveryAddress1.value = data.address;
-//         }
-//     }).open();
-// })
-
 ////////////////////////////
 function clic() {
     new daum.Postcode({
