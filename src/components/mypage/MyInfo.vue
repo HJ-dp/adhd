@@ -21,7 +21,7 @@ const store = useUserStore();
 .title {}
 
 #dung {
-    background-color: skyblue;
+    color: skyblue;
     position: absolute;
     animation: ani 2s infinite alternate;
 }

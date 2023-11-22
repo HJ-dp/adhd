@@ -1,6 +1,15 @@
 <template>
     <div class="address-container">
-
+        <div>
+        <input type="text" v-model="receiverName" readonly>
+        <input type="text" v-model="receiverPhone" readonly>
+        <input type="text" v-model="additionalPhone" readonly>
+        <input type="text" v-model="deliveryMemo" readonly>
+        <input type="text" v-model="deliveryName" readonly>
+        <input type="text" v-model="deliveryAddress1" readonly>
+        <input type="text" v-model="deliveryAddress2" readonly>
+        <input type="text" v-model="defaultAddress" readonly>
+    </div>
         <button @click="updated">dfsa</button>
         <button @click="clic()">눌러</button>
         <button @click="send()">보내기</button>
@@ -46,7 +55,11 @@ const updated = (async () => {
       <input id="addphone"  placeholder="추가연락처를 입력해주세요" class="swal2-input">
     </div>
     <div class="c">
-        <button v-on:click="clic()">눌러</button>
+      <label for="address">주소</label>
+      <input id="address" value="${deliveryAddress1.value}" placeholder="버튼을 눌러 주소를 입력해주세요" class="swal2-input" readonly>
+    </div>
+    <div class="c">
+        <button id="customButton">눌러</button>
     </div>
     <div class="c">
       <label for="detail">상세주소</label>
@@ -65,6 +78,12 @@ const updated = (async () => {
         grow: 'row',
         focusConfirm: false,
         confirmButtonColor: 'rgb(74,199,213)',
+        didOpen: () => {
+            const button = document.getElementById('customButton');
+            button.addEventListener('click', () => {
+                clic();
+            });
+        },
         preConfirm: () => {
             if (!document.getElementById("title").value) {
                 Swal.showValidationMessage('<i class="fa fa-info-circle"></i> 문의 제목을 작성해주세요')
@@ -95,16 +114,22 @@ const updated = (async () => {
         deliveryMemo.value =formValues.f;
         defaultAddress.value =formValues.g;
     }
+
 })
 
 
-
-
-
-
+///////////////////////////
+// const t = document.getElementById("btn");
+// t.addEventListener('click', ()=>{
+//     new daum.Postcode({
+//         oncomplete: function(data) {
+//             deliveryAddress1.value = data.address;
+//         }
+//     }).open();
+// })
 
 ////////////////////////////
-function clic(){
+function clic() {
     new daum.Postcode({
         oncomplete: function(data) {
             deliveryAddress1.value = data.address;
