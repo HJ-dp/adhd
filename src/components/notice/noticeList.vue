@@ -1,23 +1,24 @@
 <template>
     <div class="review-list-container">
          <h1>공지사항</h1>
-         {{ dynamicProps }}
-        <div v-if="dynamicProps?.length==0">작성된 리뷰가 없습니다.</div>
+        <div v-if="dynamicProps?.length==0">공지사항이 없습니다.</div>
         <NoticeColumn v-for="i in dynamicProps" :dynamic-props="i" :key="i.reviewId"/>
-        <button @click="check" class="writebutton" title="클릭하면 이 상품에 대한 리뷰를 남길 수 있어요.">글쓰기</button>
+        <button v-if="store.userInfo?.manager == 1" @click="check" class="writebutton" title="클릭하면 이 상품에 대한 리뷰를 남길 수 있어요.">글쓰기</button>
     </div>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { useReviewStore } from '@/stores/review';
+import { useUserStore } from '../../stores/user';
+import { useMNStore } from '../../stores/notice';
 import Swal from 'sweetalert2/src/sweetalert2.js'
 import NoticeColumn from './noticeCol.vue'
 const route = useRoute();
-const store = useReviewStore();
+const store = useUserStore();
+const nstore = useMNStore();
 
 defineProps({
-    dynamicProps: Object,
+    dynamicProps: Array,
 })
 
 const check = ()=>{
@@ -35,14 +36,14 @@ const check = ()=>{
 
 const writed = (async () => {
     const { value: formValues } = await Swal.fire({
-        title: "리뷰 작성",
+        title: "공지사항 작성",
         html: `
     <div class="c">
-      <label for="title">리뷰 제목</label>
+      <label for="title">공지 제목</label>
       <input id="title" placeholder="제목을 입력해주세요" class="swal2-input">
     </div>
     <div class="c">
-      <label for="content">리뷰 내용</label>
+      <label for="content">공지 내용</label>
       <textarea Placeholder="내용을 입력해주세요" id="content" class="swal2-textarea"></textarea>
     </div>
     `,
@@ -52,25 +53,27 @@ const writed = (async () => {
         confirmButtonColor: 'rgb(74,199,213)',
         preConfirm: () => {
             if (!document.getElementById("title").value) {
-                Swal.showValidationMessage('<i class="fa fa-info-circle"></i> 문의 제목을 작성해주세요')
+                Swal.showValidationMessage('<i class="fa fa-info-circle"></i> 공지 제목을 작성해주세요')
             } else if (!document.getElementById("content").value) {
                 Swal.showValidationMessage('<i class="fa fa-info-circle"></i> 내용이 있어야져;')
             }
             return {
-               reviewTitle :document.getElementById("title").value,
-               reviewContent :document.getElementById("content").value,
-               userId : localStorage.getItem("User"),
-               productId : route.params.productId,
-               reviewDelete : 'N',
-               reviewStar : 0,
-               type : 'R',
-               reviewDate : '2023-11-20 00:00:00'
+               noticeTitle :document.getElementById("title").value,
+               noticeContent :document.getElementById("content").value,
+               managerId : localStorage.getItem("User"),
+               noticeWriter: store.userInfo.userNickname,
+               noticeId : 0,
+               noticeType:'n',
+               noticeImg:'',
+               noticeViews : 0,
+               noticeDelete : 'N',
+               noticeDate : '2023-11-20 00:00:00'
             };
         }
     });
     if (formValues) {
         // console.log(formValues);
-        store.writeReview(formValues);
+        nstore.writeNotice(formValues);
     }
 })
 
