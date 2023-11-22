@@ -3,8 +3,9 @@ import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import Swal from 'sweetalert2/src/sweetalert2.js'
-
-const REST_USER_API = 'http://localhost:8080/api/user/'
+const VITE_DEV_HOST_URL = import.meta.env.VITE_DEV_HOST_URL
+// const REST_USER_API = 'http://localhost:8080/api/user/'
+const REST_USER_API = VITE_DEV_HOST_URL+'user/'
 export const useUserStore = defineStore('user', () => {
     const router = useRouter();
     const loginuser = ref(false);

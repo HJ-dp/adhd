@@ -9,7 +9,7 @@ import goods_Detail from '../components/Products/ProductsDetail.vue'
 import MypageView from '../views/Mypage.vue';
 import Mypage_list from '../components/mypage/Mypagecont.vue';
 import myreviews from '../components/mypage/Myresult.vue'
-import myaddress from '../components/mypage/MyAddress.vue'
+import myaddress from '../components/mypage/MyAddressControl.vue'
 
 
 const router = createRouter({

@@ -10,7 +10,7 @@
                 <router-link v-if="!store.loginuser" :to="{name:'user'}"  class="footer-sitemap-links" title="클릭하면 로그인 화면으로 이동해요">로그인</router-link>
                 <router-link v-if="!store.loginuser" :to="{name:'regist'}"  class="footer-sitemap-links" title="클릭하면 ADHD의 회원이 될 수 있어요">회원가입</router-link>
                 <router-link v-if="store.loginuser" :to="{name:'mypage-main'}" class="footer-sitemap-links" title="클릭하면 마이페이지로 이동해요">마이페이지</router-link>
-                <router-link v-if="store.loginuser" @click="store.logout()" :to="{name:'user'}" class="footer-sitemap-links" title="클릭하면 로그아웃 해요.">로그아웃</router-link>
+                <router-link v-if="store.loginuser" @click="store.logout()" :to="{name:'login'}" class="footer-sitemap-links" title="클릭하면 로그아웃 해요.">로그아웃</router-link>
             </div>
             <div class="footer-sns-links">
                 <a href="#" class="icon footer-sns-item"><i class="fa-brands fa-google-plus-g"></i></a>
