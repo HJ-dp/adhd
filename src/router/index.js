@@ -12,7 +12,9 @@ import myreviews from '../components/mypage/Myresult.vue'
 import myaddress from '../components/mypage/MyAddressControl.vue'
 import Mypage_info from '../components/mypage/MyEdit.vue'
 import Notice from '../components/mypage/Mynotice.vue'
-
+import adminView from '../views/Admin.vue'
+import adminmenu from '../components/admin/AdminMenu.vue'
+import Myfav from '../components/mypage/MyList.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +37,18 @@ const router = createRouter({
           path: 'regist',
           name: 'regist',
           component: Registform,
+        },
+      ]
+    },
+    {
+      path: '/manager',
+      name: 'manager',
+      component: adminView,
+      children:[
+        {
+          path: '/d',
+          name: 'm',
+          component: adminmenu,
         },
       ]
     },
@@ -70,7 +84,7 @@ const router = createRouter({
         },{
           path: "/mylist",
           name: 'mylist',
-          component: Mypage_list,
+          component: Myfav,
         },{
           path: "/mycart",
           name: 'mycart',
@@ -104,7 +118,12 @@ const router = createRouter({
         },
 
       ]
-    }
+    },
+    /* 404 페이지 */
+    {
+      path: '/:catchAll(.*)',
+      component: () => import('../views/NotFound.vue'), // 404 페이지 컴포넌트 경로에 맞게 수정
+    },
   ]
 })
 

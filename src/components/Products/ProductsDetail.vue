@@ -14,6 +14,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useQuestionStore } from '@/stores/question';
 import { useProductStore } from '@/stores/product';
 import { useReviewStore } from '@/stores/review';
+import { useHeartStore } from '../../stores/mylist';
 import { useRoute } from 'vue-router';
 import content from './ProductsContent.vue';
 import info from './ProductsInfo.vue';
@@ -21,6 +22,7 @@ import reviewbox from '../reviews/ReviewList.vue'
 import QNA from '../questions/QuestionList.vue'
 
 const qstore = useQuestionStore();
+const hstore = useHeartStore();
 const store = useProductStore();
 const rstore = useReviewStore();
 const route = useRoute();
@@ -32,6 +34,7 @@ onMounted( async ()=>{
     await store.getProduct(route.params.productId);
     await rstore.getReviewList(route.params.productId);
     await qstore.getQuestionList(route.params.productId);
+    await hstore.getFavList();
 })
 onUnmounted(()=>{
     store.removeProduct();

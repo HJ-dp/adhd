@@ -15,11 +15,13 @@
 <script setup>
 import myinfo from './MyInfo.vue'
 import { useUserStore } from '../../stores/user';
+import { useHeartStore } from '../../stores/mylist';
 import { onMounted } from 'vue';
 const store = useUserStore();
-
+const hstore = useHeartStore();
 onMounted(async ()=>{
     await store.getInfo();
+    await hstore.getFavList();
 })
 
 </script>

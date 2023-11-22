@@ -18,18 +18,19 @@
             <div class="option-box">
                 <div class="price">
                     <h1>수량</h1>
-                    <div class="btnBox">
+                    <div class="row">
                         {{ cnt }}
-                        <button @click="increaseCnt">+</button>
-                        <button @click="decreaseCnt">-</button>
+                        <div class="btnBox">
+                            <button @click="increaseCnt">+</button>
+                            <button @click="decreaseCnt">-</button>
+                        </div>
                     </div>
-
-                    <!-- {{ totalPrice }} -->
                 </div>
             </div>
             <div class="line"></div>
             <div class="btn-container">
-                <button @click="check()">♥</button>
+                <button v-if="isshow" @click="check(dynamicProps.productId)">♡</button>
+                <button v-else @click="unliked(dynamicProps.productId)" class="red">♥</button>
                 <button>장바구니</button>
                 <button>바로 구매</button>
             </div>
@@ -40,18 +41,28 @@
 </template>
 <script setup>
 import Swal from 'sweetalert2/src/sweetalert2.js'
-import { ref, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useHeartStore } from '../../stores/mylist';
-import {useProductStore} from '@/stores/product';
+import { useProductStore } from '@/stores/product';
 const cnt = ref(0);
-
-/////////찜////////////
+const isshow = ref(true);
 const pstore = useProductStore();
 const store = useHeartStore();
 
-const check = ()=>{
+onMounted(()=>{
+    for(let i = 0; i < store.heartList.length;i++){
+        // props.dynamicProps.productId??
+        if( pstore.product.productId == store.heartList[i].productId){
+            isshow.value = false;
+        }
+    }
+})
+
+/////////찜////////////
+
+const check = (p) => {
     if (sessionStorage.getItem('token') ?? false) {
-        heart();
+        heart(p);
     } else {
         Swal.fire({
             icon: "error",
@@ -62,20 +73,39 @@ const check = ()=>{
     }
 }
 
-function heart() {
-    if(true){
+function heart(p) {
     let h = {
         "heartId": 0,
-        "productId": pstore.product.productId,
+        "productId": p,
         "userId": localStorage.getItem('User')
     }
-    store.heartProduct(h);
-    } else {
-        store.removeHeart(id);
+    const num = ref();
+    for(let i in store.heartList){
+        if (i.userId == localStorage.getItem('User') && i.productId==p){
+            num.value = i.heartId;
+            isshow.value =false;
+            return;
+        }
     }
+    isshow.value =false;
+    store.heartProduct(h);
+    store.getFavList();
 }
 
-
+function unliked(p){
+    const num = ref();
+    for(let a=0; a< store.heartList.length;a++){
+        if (store.heartList[a].userId === localStorage.getItem('User') && store.heartList[a].productId===p){
+            num.value = store.heartList[a].heartId;
+            break;
+        }
+    }
+    if(num.value){
+        store.removeHeart(num.value);
+        store.getFavList();
+        isshow.value =true;
+    }
+}
 
 //////////////////////
 
@@ -109,6 +139,10 @@ function joinprice(p) {
 </script>
 
 <style scoped>
+/* 찜버튼 빨갛게 */
+.red {
+    color:red;
+}
 .option-box {
     margin: 2em;
 }
@@ -178,7 +212,7 @@ function joinprice(p) {
 .price {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .content-price-container {
@@ -192,6 +226,43 @@ function joinprice(p) {
 
 .btn-container {
     margin: 2em;
+    display: flex;
+    gap: 1em;
+}
+
+.btn-container * {
+    white-space: nowrap;
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 1em;
+    transition: all .3s cubic-bezier(0, 0, .5, 1);
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
+    cursor: pointer;
+}
+.row{
+    display: flex;
+    gap:1em;
+    justify-content: center;
+    align-items: center;
+}
+.btn-container *:active {
+    background-color: gray;
+}
+
+.btnBox {
+    display: flex;
+    gap: 1em;
+}
+
+.btnBox button {
+    border:none;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 1em;
+    transition: all .3s cubic-bezier(0, 0, .5, 1);
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
 }
 
 /* 라인 */

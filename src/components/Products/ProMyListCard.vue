@@ -1,10 +1,10 @@
 <template>
-    <router-link class="card-container" :to="{name:'goods_Detail',params:{productId: dynamicProps.productId}}" title="클릭하면 상품을 자세히 볼 수 있어요.">
-        <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps.productImg})`}" alt="상품 사진"></div>
+    <router-link class="card-container" :to="{name:'goods_Detail',params:{productId: dynamicProps?.productId}}" title="클릭하면 상품을 자세히 볼 수 있어요.">
+        <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps?.productImg})`}" alt="상품 사진"></div>
         <div class="card-info">
             <div class="card-info-badge" :class="{'hot':hot, 'new':isNew}"> NEW</div>
-            <div class="card-info-title">{{ dynamicProps.productName }}</div>
-            <div class="card-info-price">₩ {{ joinprice(dynamicProps.price) }}</div>
+            <div class="card-info-title">{{ dynamicProps?.productName }}</div>
+            <div class="card-info-price">₩ {{ joinprice(dynamicProps?.price) }}</div>
         </div>
     </router-link> 
 </template>
