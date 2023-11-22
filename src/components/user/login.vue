@@ -66,25 +66,44 @@ async function login() {
     id: inputId.value,
     pw: inputPw.value
   }
+  tsParticles.load("tsparticles", {
+    emitters: [
+      {
+        life: {
+          duration: 5,
+          count: 1,
+        },
+        position: {
+          x: 0,
+          y: 30,
+        },
+        particles: {
+          move: {
+            direction: "top-right",
+          },
+        },
+      },
+      {
+        life: {
+          duration: 5,
+          count: 1,
+        },
+        position: {
+          x: 100,
+          y: 30,
+        },
+        particles: {
+          move: {
+            direction: "top-left",
+          },
+        },
+      },
+    ],
+    preset: "confetti",
+  });
   await store.login(user);
-  let timerInterval;
-  Swal.fire({
-    title: "로그인 중입니다!",
-    html: "<b></b>밀리초 내에 로그인 됩니다.",
-    timer: 500,
-    timerProgressBar: true,
-    didOpen: () => {
-      Swal.showLoading();
-      const timer = Swal.getPopup().querySelector("b");
-      timerInterval = setInterval(() => {
-        timer.textContent = `${Swal.getTimerLeft()}`;
-      }, 100);
-    },
-    willClose: () => {
-      clearInterval(timerInterval);
-      router.push({name:'main'});
-    }
-  })
+  
+  router.push({ name: 'main' });
 }
 </script>
 
@@ -222,4 +241,5 @@ async function login() {
 
 .btn-box button:last-child {
   background-color: rgb(7, 29, 61);
-}</style>
+}
+</style>

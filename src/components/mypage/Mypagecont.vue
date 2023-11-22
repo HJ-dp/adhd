@@ -2,12 +2,12 @@
     <div class="grid-container">
         <router-link :to="{name:'mylist'}" class="box title list">내가 찜한</router-link>
         <router-link :to="{name:'mycart'}" class="box title cart">장바구니</router-link>
-        <myinfo />
+        <myinfo class="llogo" />
         <router-link :to="{name:'myorder'}" class="box title order">주문내역</router-link>
         <router-link :to="{name:'myaddress'}" class="box title delivery">나의 배송지</router-link>
         <router-link :to="{name:'myinfo',  query: { param: store } }" class="box title edit">내 정보 수정</router-link>
-        <router-link :to="{name:'myreview'}" class="box title">내가 남긴 리뷰</router-link>
-        <router-link :to="{name:'myquestion'}" class="box title">내가 남긴 문의사항</router-link>
+        <router-link :to="{name:'myreview'}" class="box title review">내가 남긴 리뷰</router-link>
+        <router-link :to="{name:'myquestion'}" class="box title ques">내가 남긴 문의사항</router-link>
         <router-link :to="{name:'mynotice'}" class="box title notice">공지사항</router-link>
     </div>
 </template>
@@ -89,6 +89,30 @@ onMounted(async ()=>{
     background-position: 0% 70%;
     background-size: 100%;
 }
+
+.review{
+    background-image: url('/flower.jpg');
+    background-position: 0% 70%;
+    background-size: 100%;
+}
+
+.ques{
+    background-image: url('/qu.jpg');
+    background-position: 0% 70%;
+    background-size: 100%;
+}
+
+.notice{
+    background-image: url('/notice.jpg');
+    background-position: 0% 70%;
+    background-size: 100%;
+}
+.llogo{
+    background-image: url('/logo/logoimg.png');
+    background-position: 0% 50%;
+    background-size: 100%;
+}
+
 
 /* <a href="https://kr.freepik.com/free-photo/purple-delivery-car-or-delivery-truck-transport-shipping-icon-online-shopping-concept-3d-illustration_34332885.htm#query=3d%20%ED%8A%B8%EB%9F%AD&position=2&from_view=search&track=ais&uuid=6d02dc82-d774-4bfd-a500-03a9a89e5fa0">작가 mamewmy</a> 출처 Freepik */
 

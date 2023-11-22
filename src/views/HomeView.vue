@@ -18,7 +18,6 @@
 import titles from '../components/banner/TitleBanner.vue';
 import list from '../components/Products/ProductsList.vue'
 import banner from '../components/banner/EventBanner.vue'
-
 import {useProductStore} from '@/stores/product';
 import { onMounted } from 'vue';
 
@@ -52,7 +51,6 @@ onMounted(async ()=>{
   flex-direction: column;
   gap:1em;
 }
-
 .section-best h1,
 .section-new h1{
   font-size: 24px;

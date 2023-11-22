@@ -151,6 +151,9 @@ async function regist() {
         userNickname: inputNick.value,
         userStatus: ""
     };
+    tsParticles.load("tsparticles", {
+        preset: "confetti",
+    });
     await store.regist(user);
 }
 
@@ -202,7 +205,7 @@ function checkPhone(phone) {
     max-width: 350px;
     height: 18px;
     background-color: transparent;
-    color : white;
+    color: white;
 }
 
 .input-box {

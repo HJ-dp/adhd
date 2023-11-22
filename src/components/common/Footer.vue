@@ -18,7 +18,7 @@
                 <a href="#" class="icon footer-sns-item"><img style="width: 25px;" src="/logo/kakao.svg" alt=""></a>
                 <a href="#" class="icon footer-sns-item"><img style="width: 25px;" src="/logo/naver.svg" alt=""></a>
             </div>
-            <div>&copy 2023. DH Co. all rights reserved.</div>
+            <div> &#xA9; 2023. DH Co. all rights reserved.</div>
         </div>
     </div>
 </template>
