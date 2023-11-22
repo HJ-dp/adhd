@@ -35,6 +35,21 @@ const pwcheck = ref();
 const idwar = ref(false);
 const pwwar = ref(false);
 
+    window.onload = function(){
+      var cd = document.getElementById("inputId")
+cd.addEventListener("keyup", function(e) {
+        if (e.code === 'Enter') {
+          vaildationCheck()
+        }
+    })
+    document.getElementById("inputPw").addEventListener("keyup", function(e) {
+        if (e.code === 'Enter') {
+          vaildationCheck()
+        }
+    });
+}
+
+
 
 function vaildationCheck() {
   idcheck.value = "";

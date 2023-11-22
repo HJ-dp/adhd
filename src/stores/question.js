@@ -9,10 +9,18 @@ const REST_Question_API = VITE_DEV_HOST_URL+'review/'
 export const useQuestionStore = defineStore('question', () => {
   const router = useRouter();
   const QuestionList = ref();
+
   const getQuestionList = function (pid) {
     axios.get(REST_Question_API+`productQuestionList?productId=${pid}`)
     .then((res)=>{
       QuestionList.value = res.data;
+    })
+  }
+
+  const questionListmine= function(id){
+    axios.get(REST_Question_API+`productQuestionList?userId=${id}`)
+    .then((res)=>{
+      QuestionList.value = res.data
     })
   }
 
@@ -101,5 +109,5 @@ export const useQuestionStore = defineStore('question', () => {
   }, 1000);
   }
 
-  return { getQuestionList, QuestionList, removeQuestionList,writeQuestion , updateQuestion, removeQuestion }
+  return { questionListmine, getQuestionList, QuestionList, removeQuestionList,writeQuestion , updateQuestion, removeQuestion }
 }, { persist:true})

@@ -8,7 +8,7 @@
         <router-link :to="{name:'myinfo',  query: { param: store } }" class="box title edit">내 정보 수정</router-link>
         <router-link :to="{name:'myreview'}" class="box title review">내가 남긴 리뷰</router-link>
         <router-link :to="{name:'myquestion'}" class="box title ques">내가 남긴 문의사항</router-link>
-        <router-link :to="{name:'mynotice'}" class="box title notice">공지사항</router-link>
+        <router-link :to="{name:'mynotice'}" class="box title notice">공지사항 & 이벤트</router-link>
     </div>
 </template>
 <!-- <a href="https://kr.freepik.com/free-psd/megaphone-isolated-3d-render-icon-illustration_28788633.htm#query=3d&position=4&from_view=keyword&track=sph&uuid=8ee17b0d-502c-43bc-8730-b126a06c9ca2">작가 Xvect intern</a> 출처 Freepik -->

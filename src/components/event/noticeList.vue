@@ -1,9 +1,9 @@
 <template>
     <div class="review-list-container">
-         <h1>공지사항</h1>
-        <div v-if="dynamicProps?.length==0">공지사항이 없습니다.</div>
+         <h1>이벤트</h1>
+        <div v-if="dynamicProps?.length==0">진행중인 이벤트가 없습니다.</div>
         <NoticeColumn v-for="i in dynamicProps" :dynamic-props="i" :key="i.reviewId"/>
-        <button v-if="store.userInfo?.manager == 1" @click="check" class="writebutton" title="클릭하면 이 상품에 대한 리뷰를 남길 수 있어요.">글쓰기</button>
+        <button v-if="store.userInfo?.manager == 1" @click="check" class="writebutton" title="클릭하면 이벤트 공지사항을 남길 수 있어요.">글쓰기</button>
     </div>
 </template>
 
@@ -36,14 +36,14 @@ const check = ()=>{
 
 const writed = (async () => {
     const { value: formValues } = await Swal.fire({
-        title: "공지사항 작성",
+        title: "이벤트 작성",
         html: `
     <div class="c">
-      <label for="title">공지 제목</label>
+      <label for="title">이벤트 제목</label>
       <input id="title" placeholder="제목을 입력해주세요" class="swal2-input">
     </div>
     <div class="c">
-      <label for="content">공지 내용</label>
+      <label for="content">이벤트 내용</label>
       <textarea Placeholder="내용을 입력해주세요" id="content" class="swal2-textarea"></textarea>
     </div>
     `,
@@ -63,7 +63,7 @@ const writed = (async () => {
                managerId : localStorage.getItem("User"),
                noticeWriter: store.userInfo.userNickname,
                noticeId : 0,
-               noticeType:'N',
+               noticeType:'E',
                noticeImg:'',
                noticeViews : 0,
                noticeDelete : 'N',
@@ -72,7 +72,6 @@ const writed = (async () => {
         }
     });
     if (formValues) {
-        // console.log(formValues);
         nstore.writeNotice(formValues);
     }
 })

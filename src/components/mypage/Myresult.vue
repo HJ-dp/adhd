@@ -1,20 +1,23 @@
 <template>
     <div class="mine-container">
-        <list :props="Props.type" :dynamic-props="store.ReviewList"/>
+        <list v-if="Props.type==1" :props="Props.type" :dynamic-props="store.ReviewList"/>
+        <list v-else :props="Props.type" :dynamic-props="pstore.questionListmine"/>
     </div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue';
 import { useReviewStore } from '../../stores/review';
+import { useQuestionStore } from '../../stores/question';
 import list from './Myreviews.vue'
 
 const store = useReviewStore();
-
+const pstore = useQuestionStore();
 const Props = defineProps(['type']);
 
 onMounted( async ()=>{
     await store.reviewListmine(localStorage.getItem('User'));
+    await pstore.questionListmine(localStorage.getItem('User'));
 })
 
 </script>

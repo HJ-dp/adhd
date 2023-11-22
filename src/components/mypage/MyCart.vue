@@ -1,6 +1,6 @@
 <template>
     <div class="cart-container">
-
+        
     </div>
 </template>
 

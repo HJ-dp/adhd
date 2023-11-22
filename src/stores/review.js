@@ -71,6 +71,10 @@ export const useReviewStore = defineStore('review', () => {
         icon: "success",
         confirmButtonColor: 'rgb(74,199,213)',
     })
+    setTimeout(() => {
+      router.go(0);
+    }, 2000);
+
     })
     .catch(()=>{
       Swal.fire({

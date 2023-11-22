@@ -85,7 +85,7 @@ const updated = (async (id, t, content) => {
         managerId: localStorage.getItem("User"),
         noticeWriter: ustore.userInfo.userNickname,
         noticeId: id,
-        noticeType: 'N',
+        noticeType: 'E',
         noticeImg: '',
         noticeViews: 0,
         noticeDelete: 'N',
