@@ -14,8 +14,8 @@
   </div>
 </template>
 
-<script setup>
-import titles from '../components/banner/Titlebanner.vue'
+<script setup> 
+import titles from '../components/banner/TitleBanner.vue'
 import list from '../components/Products/ProductsList.vue'
 import banner from '../components/banner/EventBanner.vue'
 
