@@ -106,6 +106,10 @@ const router = createRouter({
         component: () => import('../views/purchase/PurchaseView.vue'),
         children:[
           {
+            path: "",
+            name: 'order',
+            component: () => import('../views/purchase/order.vue'),
+          },{
             path: "/success",
             name: 'success',
             component: () => import('../views/purchase/success.vue'),
