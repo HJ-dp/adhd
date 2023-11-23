@@ -1,16 +1,21 @@
 <template>
     <div class="header-container">
         <nav class="global-nav">
-            <router-link :to="{name:'main'}" class="logo" title="클릭하면 메인페이지로 이동해요">
+            <router-link :to="{ name: 'main' }" @click="confetti()" class="logo" title="클릭하면 메인페이지로 이동해요">
                 <img src="/logo/Emblem_Away.png" alt="">
             </router-link>
             <div class="global-nav-items">
-                <router-link :to="{name:'goods_List',params:{itemcode:'1'}}" class="global-nav-item" title="클릭하면 판매상품을 볼 수 있어요">판매상품</router-link>
+                <router-link :to="{ name: 'goods_List', params: { itemcode: '1' } }" class="global-nav-item"
+                    title="클릭하면 판매상품을 볼 수 있어요">판매상품</router-link>
                 <a href="#" class="global-nav-item" title="클릭하면 팬들의 오픈마켓으로 이동해요">오픈마켓</a>
-                <router-link v-if="!store.loginuser" :to="{name:'login'}" class="global-nav-item" title="클릭하면 로그인 화면으로 이동해요">로그인</router-link>
-                <router-link v-if="!store.loginuser" :to="{name:'regist'}" class="global-nav-item" title="클릭하면 ADHD의 회원이 될 수 있어요">회원가입</router-link>
-                <router-link v-if="store.loginuser" :to="{name:'mypage-main'}" class="global-nav-item" title="클릭하면 마이페이지로 이동해요">마이페이지</router-link>
-                <router-link v-if="store.loginuser" :to="{name:'user'}" @click="store.logout()" class="global-nav-item" title="클릭하면 로그아웃 해요.">로그아웃</router-link>
+                <router-link v-if="!store.loginuser" :to="{ name: 'login' }" class="global-nav-item"
+                    title="클릭하면 로그인 화면으로 이동해요">로그인</router-link>
+                <router-link v-if="!store.loginuser" :to="{ name: 'regist' }" class="global-nav-item"
+                    title="클릭하면 ADHD의 회원이 될 수 있어요">회원가입</router-link>
+                <router-link v-if="store.loginuser" :to="{ name: 'mypage-main' }" class="global-nav-item"
+                    title="클릭하면 마이페이지로 이동해요">마이페이지</router-link>
+                <router-link v-if="store.loginuser" :to="{ name: 'login' }" @click="store.logout()" class="global-nav-item"
+                    title="클릭하면 로그아웃 해요.">로그아웃</router-link>
             </div>
         </nav>
     </div>
@@ -18,8 +23,14 @@
 
 <script setup>
 import { useUserStore } from '../../stores/user';
-
 const store = useUserStore();
+
+function confetti() {
+    tsParticles.load("tsparticles", {
+        preset: "confetti",
+    });
+}
+
 
 </script>
 
@@ -29,7 +40,7 @@ const store = useUserStore();
     width: 100%;
     height: 44px;
     position: sticky;
-    top:0;
+    top: 0;
 }
 
 /* 상단 네비 */
@@ -74,7 +85,4 @@ const store = useUserStore();
     width: 100%;
     height: 100%;
 }
-
-
-
 </style>

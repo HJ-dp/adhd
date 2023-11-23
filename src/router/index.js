@@ -10,8 +10,6 @@ import MypageView from '../views/Mypage.vue';
 import Mypage_list from '../components/mypage/Mypagecont.vue';
 import myreviews from '../components/mypage/Myresult.vue'
 import myaddress from '../components/mypage/MyAddress.vue'
-import YoutubeView from '../views/YoutubeView.vue'
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +36,18 @@ const router = createRouter({
       ]
     },
     {
+      path: '/manager',
+      name: 'manager',
+      component: adminView,
+      children:[
+        {
+          path: '/d',
+          name: 'm',
+          component: adminmenu,
+        },
+      ]
+    },
+    {
       path: '/goods',
       name: 'goods',
       component: ProductView, 
@@ -56,8 +66,7 @@ const router = createRouter({
           component: goods_Detail
         },
       ]
-    },
-    {
+    },{
       path:'/mypage',
       name:'mypage',
       component:MypageView,
@@ -69,11 +78,11 @@ const router = createRouter({
         },{
           path: "/mylist",
           name: 'mylist',
-          component: Mypage_list,
+          component: Myfav,
         },{
           path: "/mycart",
           name: 'mycart',
-          component: Mypage_list,
+          component: Mycart,
         },{
           path: "/myorder",
           name: 'myorder',
@@ -95,15 +104,14 @@ const router = createRouter({
         },{
           path: "mynotice",
           name: 'mynotice',
-          component: Mypage_list,
+          component: Notice,
+        },{
+          path: "myinfo",
+          name: 'myinfo',
+          component: Mypage_info,
         },
       ]
-    },
-    {
-      path: "/youtube",
-      name: "youtube",
-      component: YoutubeView,
-    },
+    }
   ]
 })
 

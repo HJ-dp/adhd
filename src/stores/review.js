@@ -4,7 +4,8 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import Swal from 'sweetalert2/src/sweetalert2.js'
 
-const REST_REVIEW_API = 'http://localhost:8080/api/review/'
+const VITE_DEV_HOST_URL = import.meta.env.VITE_DEV_HOST_URL
+const REST_REVIEW_API = VITE_DEV_HOST_URL+'review/'
 export const useReviewStore = defineStore('review', () => {
   const router = useRouter();
   const ReviewList = ref();
@@ -70,6 +71,10 @@ export const useReviewStore = defineStore('review', () => {
         icon: "success",
         confirmButtonColor: 'rgb(74,199,213)',
     })
+    setTimeout(() => {
+      router.go(0);
+    }, 2000);
+
     })
     .catch(()=>{
       Swal.fire({

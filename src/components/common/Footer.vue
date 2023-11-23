@@ -7,10 +7,10 @@
                 <router-link :to="{name:'goods_List',params:{itemcode:'1'}}" class="footer-sitemap-links" title="클릭하면 판매상품을 볼 수 있어요">판매상품</router-link>
                 <router-link :to="{name:'main'}"  class="footer-sitemap-links" title="클릭하면 팬들의 오픈마켓으로 이동해요">오픈마켓</router-link>
                 <router-link :to="{name:'main'}"  class="footer-logo" title="클릭하면 메인페이지로 이동해요"></router-link>
-                <router-link v-if="!store.loginuser" :to="{name:'user'}"  class="footer-sitemap-links" title="클릭하면 로그인 화면으로 이동해요">로그인</router-link>
+                <router-link v-if="!store.loginuser" :to="{name:'login'}"  class="footer-sitemap-links" title="클릭하면 로그인 화면으로 이동해요">로그인</router-link>
                 <router-link v-if="!store.loginuser" :to="{name:'regist'}"  class="footer-sitemap-links" title="클릭하면 ADHD의 회원이 될 수 있어요">회원가입</router-link>
                 <router-link v-if="store.loginuser" :to="{name:'mypage-main'}" class="footer-sitemap-links" title="클릭하면 마이페이지로 이동해요">마이페이지</router-link>
-                <router-link v-if="store.loginuser" @click="store.logout()" :to="{name:'user'}" class="footer-sitemap-links" title="클릭하면 로그아웃 해요.">로그아웃</router-link>
+                <router-link v-if="store.loginuser" @click="store.logout()" :to="{name:'login'}" class="footer-sitemap-links" title="클릭하면 로그아웃 해요.">로그아웃</router-link>
             </div>
             <div class="footer-sns-links">
                 <a href="#" class="icon footer-sns-item"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -18,7 +18,7 @@
                 <a href="#" class="icon footer-sns-item"><img style="width: 25px;" src="/logo/kakao.svg" alt=""></a>
                 <a href="#" class="icon footer-sns-item"><img style="width: 25px;" src="/logo/naver.svg" alt=""></a>
             </div>
-            <div>&copy 2023. DH Co. all rights reserved.</div>
+            <div> &#xA9; 2023. DH Co. all rights reserved.</div>
         </div>
     </div>
 </template>

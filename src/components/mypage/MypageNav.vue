@@ -1,10 +1,10 @@
 <template>
-    <div class="products-nav-container">
-        <nav class="product-nav">
-            <router-link :to="{name:'mypage-main'}" class="product-nav-item" title="클릭하면 유니폼들을 모아볼 수 있어요">회원 정보</router-link>
-            <router-link :to="{name:'mypage-main'}" class="product-nav-item" title="클릭하면 모자들을 모아볼 수 있어요">주문 정보</router-link>
-            <router-link :to="{name:'mypage-main'}" class="product-nav-item" title="클릭하면 의류들을 모아볼 수 있어요">장바구니</router-link>
-            <router-link :to="{name:'mypage-main'}" class="product-nav-item" title="클릭하면 팬상품들을 모아볼 수 있어요">배송지 관리</router-link>
+    <div class="mypage-nav-container">
+        <nav class="mypage-nav">
+            <router-link :to="{name:'myinfo'}" class="mypage-nav-item" title="클릭하면 나의 정보를 수정할 수 있어요">회원 정보</router-link>
+            <router-link :to="{name:'myorder'}" class="mypage-nav-item" title="클릭하면 내 주문을 모아볼 수 있어요">주문 정보</router-link>
+            <router-link :to="{name:'mycart'}" class="mypage-nav-item" title="클릭하면 내 장바구니를 볼 수 있어요">장바구니</router-link>
+            <router-link :to="{name:'myaddress'}" class="mypage-nav-item" title="클릭하면 내 배송지를 관리할 수 있어요">배송지 관리</router-link>
         </nav>
     </div>
 </template>
@@ -14,19 +14,19 @@
 </script>
 
 <style scoped>
-.products-nav-container{
+.mypage-nav-container{
     width: 100%;
     color:white;
 }
 
-.product-nav{
+.mypage-nav{
     background-color:rgb(29, 29, 31);
     display: flex;
     width: 100%;
     border-radius: 5px;
 }
 
-.product-nav-item {
+.mypage-nav-item {
     width: 100%;
     text-align: center;
     padding: 1em;
@@ -34,7 +34,7 @@
     transition:0.2s;
 }
 
-.product-nav-item:hover{
+.mypage-nav-item:hover{
     transform: scale(1.05);
     cursor: pointer;
     color: black;

@@ -1,12 +1,18 @@
 <template>
     <div class=" box container">
-        <div class="title" id="dung">{{ store.User?.id }}님 환영합니다</div>
+        <div class="title" id="dung">{{ store.userInfo?.userNickname }}님 환영합니다</div>
+        <div class="btn-box">
+            <router-link v-if="store.userInfo?.manager" :to="{ name: 'manager' }" class="manageBtn" title="클릭하면 관리자페이지로 이동해요">관리자</router-link>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { useUserStore } from '../../stores/user';
 const store = useUserStore();
+
+
+
 </script>
 
 <style scoped>

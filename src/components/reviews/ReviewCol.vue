@@ -13,7 +13,7 @@
     <div class="nowrap">{{ dynamicProps.reviewDate.slice(0, 10) }}</div>
     <div v-if="toggle"></div>
     <div class="btn-box" v-if="toggle && ustore.User?.id == dynamicProps.userId">
-      <button @click.stop="check(1, dynamicProps.reviewId, dynamicProps.reviewTitle, dynamicProps.reviewContent)"
+      <button @click.stop="check(1, dynamicProps.reviewId, dynamicProps.reviewTitle, dynamicProps.reviewContent,dynamicProps.productId)"
         class="button nowrap upd" title="클릭하면 이 리뷰를 수정할 수 있어요">수정</button>
       <button @click.stop="check(2, dynamicProps.reviewId)" class="button nowrap del" title="클릭하면 이 리뷰를 지울 수 있어요">삭제</button>
     </div>
@@ -40,10 +40,10 @@ onMounted(() => {
 
 })
 
-const check = (s, data, t, content) => {
+const check = (s, data, t, content,pid) => {
   if (sessionStorage.getItem('token') ?? false) {
     if (s == 1) {
-      updated(data,t, content);
+      updated(data,t, content,pid);
     } else {
       deletereview(data);
     }
@@ -57,7 +57,7 @@ const check = (s, data, t, content) => {
   }
 }
 
-const updated = (async (id, t, content) => {
+const updated = (async (id, t, content,pid) => {
   const { value: formValues } = await Swal.fire({
     title: "리뷰 수정",
     html: `
@@ -85,7 +85,7 @@ const updated = (async (id, t, content) => {
         reviewContent: document.getElementById("content").value,
         userId: localStorage.getItem("User"),
         reviewId : id,
-        productId: route.params.productId,
+        productId: pid,
         reviewDelete: 'N',
         reviewStar: 0,
         type: 'R',

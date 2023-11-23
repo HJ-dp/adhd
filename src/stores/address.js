@@ -5,16 +5,16 @@ import axios from 'axios';
 import Swal from 'sweetalert2/src/sweetalert2.js'
 // test
 
-const REST_ADDRESS_API = 'http://localhost:8080/api/delivery/'
+const VITE_DEV_HOST_URL = import.meta.env.VITE_DEV_HOST_URL
+const REST_ADDRESS_API = VITE_DEV_HOST_URL+'delivery/'
 export const useAddressStore = defineStore('address', () => {
-
+  const AddressList = ref();
   const getAddressList = function (pid) {
-    axios.get(REST_ADDRESS_API+`productQuestionList?productId=${pid}`)
+    axios.get(REST_ADDRESS_API+`deliveryList/${pid}`)
     .then((res)=>{
-      QuestionList.value = res.data;
+      AddressList.value = res.data;
     })
   }
-
 
   const addAddress = function (add) {
     axios({
@@ -40,5 +40,5 @@ export const useAddressStore = defineStore('address', () => {
   })
   }
 
-  return { getAddressList, addAddress }
+  return { getAddressList, addAddress, AddressList }
 }, { persist:true})

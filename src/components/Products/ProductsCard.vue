@@ -34,8 +34,6 @@ function joinprice(p){
     height: 400px;
     border-radius: 10px;
     padding: 1em;
-    /* flex-shrink: 0;
-    flex-grow: 0; */
     justify-content: space-between;
     transition: all .3s cubic-bezier(0, 0, .5, 1);
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);

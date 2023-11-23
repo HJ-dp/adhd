@@ -81,7 +81,7 @@ function vaildationCheck() {
     emailcheck.value = "";
     nickcheck.value = "";
     let ok = true;
-
+    
     if (!inputId.value) {
         idwar.value = true;
         idcheck.value = '아이디를 입력해주세요'
@@ -151,6 +151,15 @@ async function regist() {
         userNickname: inputNick.value,
         userStatus: ""
     };
+    tsParticles.load("tsparticles", {
+        particles: {
+          position:{
+            x:100,
+            y:100
+          }  
+        },
+        preset: "confetti",
+    });
     await store.regist(user);
 }
 
@@ -202,7 +211,7 @@ function checkPhone(phone) {
     max-width: 350px;
     height: 18px;
     background-color: transparent;
-    color : white;
+    color: white;
 }
 
 .input-box {

@@ -4,11 +4,15 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import Swal from 'sweetalert2/src/sweetalert2.js'
 
-const REST_USER_API = 'http://localhost:8080/api/user/'
+
+const VITE_DEV_HOST_URL = import.meta.env.VITE_DEV_HOST_URL
+const REST_USER_API = VITE_DEV_HOST_URL+'user/'
+
 export const useUserStore = defineStore('user', () => {
     const router = useRouter();
     const loginuser = ref(false);
     const User = ref();
+    const userInfo = ref();
     const login = function (user) {
         axios({
             url: REST_USER_API + `login`,
@@ -32,6 +36,13 @@ export const useUserStore = defineStore('user', () => {
             });
         })
     }
+
+    const getInfo = function () {
+        axios.get(REST_USER_API+`${localStorage.getItem('User')}`)
+        .then((res)=>{
+            userInfo.value = res.data
+        })
+      }
 
     const logout = function () {
         localStorage.removeItem("token");
@@ -65,9 +76,9 @@ export const useUserStore = defineStore('user', () => {
                         icon: "error",
                         confirmButtonColor: 'rgb(74,199,213)',
                     });
-                } else if (res.response.data.message=="1"){
+                } else if (res.response.data.message=="2"){
                     Swal.fire({
-                        title: "이미 존재하는 닉네임입니다 🥲",
+                        title: "이미 존재하는 닉네임입니다",
                         text: "입력하신 정보를 확인하시고, 다시 작성해주세요",
                         icon: "error",
                         confirmButtonColor: 'rgb(74,199,213)',
@@ -83,5 +94,65 @@ export const useUserStore = defineStore('user', () => {
             })
     }
 
-    return { login, regist, logout, loginuser, User }
+    const updatee = function (user) {
+        axios({
+            url: REST_USER_API + `mypage/userInfo`,
+            method: 'PUT',
+            data: user,
+        })
+            .then(() => {
+                Swal.fire({
+                    title: "정보 수정 완료!",
+                    text: "정상적으로 수정되었습니다.",
+                    icon: "success",
+                    confirmButtonColor: 'rgb(74,199,213)',
+                });
+                router.push({name:'mypage-main'});
+            })
+            .catch((res) => {
+                if (res.response.data.message=="1"){
+                    Swal.fire({
+                        title: "이미 존재하는 닉네임입니다",
+                        text: "입력하신 정보를 확인하시고, 다시 작성해주세요",
+                        icon: "error",
+                        confirmButtonColor: 'rgb(74,199,213)',
+                    });
+                } else {
+                    Swal.fire({
+                        title: "문제가 발생했습니다",
+                        text: "입력하신 정보를 확인하시고, 다시 작성해주세요",
+                        icon: "error",
+                        confirmButtonColor: 'rgb(74,199,213)',
+                    });
+                }
+            })
+    }
+
+    const signout = function (user) {
+        axios({
+            url: REST_USER_API + `usercancel/${user}`,
+            method: 'PUT',
+            data: user,
+        }).then(() => {
+                Swal.fire({
+                    title: "감사했습니다!",
+                    text: "정상적으로 탈퇴되었습니다.",
+                    icon: "success",
+                    confirmButtonColor: 'rgb(74,199,213)',
+                });
+                router.push({name:'login'});
+            })
+            .catch((res) => {
+                console.log(res);
+                Swal.fire({
+                    title: "문제가 발생했습니다",
+                    text: "다시 시도해주세요",
+                    icon: "error",
+                    confirmButtonColor: 'rgb(74,199,213)',
+                });
+            })
+    }
+
+
+    return { signout, getInfo, updatee, login, regist, logout, loginuser, User, userInfo }
 }, { persist: true })

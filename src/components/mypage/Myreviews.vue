@@ -3,7 +3,7 @@
         <h1 v-if="props == 1">내가 작성한 상품 리뷰</h1>
         <h1 v-else>내가 작성한 상품 문의</h1>
         <div v-if="dynamicProps.length == 0">작성한 글이 없습니다.</div>
-        <div v-if="props == 1">
+        <div v-if="props == 1" class="full">
             <ReviewColumn v-for="i in dynamicProps" :dynamic-props="i" :key="i.reviewId" />
         </div>
         <QuestionColumn v-else v-for="i in dynamicProps" :dynamic-props="i" :key="i.reviewId" />
@@ -16,7 +16,7 @@ import QuestionColumn from '../questions/QuestionCol.vue'
 
 defineProps({
     dynamicProps: Object,
-    props : Number
+    props : Object
 })
 
 </script>
@@ -60,5 +60,10 @@ label {
 .review-list-container h1 {
     margin: 1em;
     font-size: 17px;
+}
+
+.full {
+    width: 100%;
+    max-width: 800px;
 }
 </style>

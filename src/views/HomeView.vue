@@ -15,12 +15,11 @@
   </div>
 </template>
 
-<script setup>
-import titles from '../components/banner/Titlebanner.vue'
+<script setup> 
+import titles from '../components/banner/TitleBanner.vue';
 import list from '../components/Products/ProductsList.vue'
 import banner from '../components/banner/EventBanner.vue'
 import youtubeBanner from '@/components/banner/YoutubeBanner.vue'
-
 import {useProductStore} from '@/stores/product';
 import { onMounted } from 'vue';
 
@@ -54,7 +53,6 @@ onMounted(async ()=>{
   flex-direction: column;
   gap:1em;
 }
-
 .section-best h1,
 .section-new h1{
   font-size: 24px;
