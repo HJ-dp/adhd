@@ -1,7 +1,7 @@
 <template>
     <div class="mine-container">
         <list v-if="Props.type==1" :props="Props.type" :dynamic-props="store.ReviewList"/>
-        <list v-else :props="Props.type" :dynamic-props="pstore.questionListmine"/>
+        <list v-else :props="Props.type" :dynamic-props="pstore.QuestionList"/>
     </div>
 </template>
 

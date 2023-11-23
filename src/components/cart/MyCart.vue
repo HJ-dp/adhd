@@ -10,7 +10,7 @@
                         배송지 설정
                     </div>
                 </div>
-                <router-link :to="{name:'purchase'}"  class="purchaseBtn card" title="클릭하면 주문페이지로 이동해요">구매</router-link>
+                <router-link :to="{name:'order'}"  class="purchaseBtn card" title="클릭하면 주문페이지로 이동해요">구매</router-link>
             </div>
         </div>
     </div>
