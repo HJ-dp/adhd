@@ -29,7 +29,6 @@ onMounted(() => {
   })
   .then((response) => {
     vvideos.value = response.data.items
-    console.log(response.data.items)
   })
   .catch(() => { })
 })
@@ -40,8 +39,6 @@ onMounted(() => {
 <style scoped>
 .banner-container{
     width: 2000px;
-    /* width:100%; */
-    /* height: 300px; */
     display: flex;
     justify-content: center;
     align-items: center;
