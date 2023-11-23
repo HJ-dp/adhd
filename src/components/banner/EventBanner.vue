@@ -1,8 +1,10 @@
 <template>
     <div class="banner-container">
-        <h1>싸피 밋업은?</h1>
+        <h1>오픈 기념 이벤트!</h1>
         <br>
-        <p>손쉽게 댄스로 1등 하겠어</p>
+        <p>11 / 24 금요일 단 하루!</p>
+        <br>
+        <p>주문 금액 상관없이 무조건 배송비 무료!</p>
     </div>
 </template>
 
