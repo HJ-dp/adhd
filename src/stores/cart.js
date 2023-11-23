@@ -44,7 +44,7 @@ export const useCartStore = defineStore('cart', () => {
   const loadCart = function () {
     const cart = localStorage.getItem('cart');
     if (cart) {
-      cartList = JSON.parse(cart);
+      // cartList = JSON.parse(cart);
     }
   }
     // if(!localcart.value.includes(product)){
