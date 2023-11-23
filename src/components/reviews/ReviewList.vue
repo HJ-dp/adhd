@@ -68,7 +68,6 @@ const writed = (async () => {
         }
     });
     if (formValues) {
-        // console.log(formValues);
         store.writeReview(formValues);
     }
 })

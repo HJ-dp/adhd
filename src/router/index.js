@@ -1,22 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import LoginView from '../views/Login.vue'
-import Loginform from '../components/user/login.vue'
-import Registform from '../components/user/regist.vue'
-import ProductView from '../views/products/Product-main.vue';
-import goods_ListView from '../views/products/Product-list.vue'
-import goods_Detail from '../components/Products/ProductsDetail.vue'
-import MypageView from '../views/Mypage.vue';
-import Mypage_list from '../components/mypage/Mypagecont.vue';
-import myreviews from '../components/mypage/Myresult.vue'
-import myaddress from '../components/mypage/MyAddressControl.vue'
-import Mypage_info from '../components/mypage/MyEdit.vue'
-import Notice from '../components/mypage/Mynotice.vue'
-import adminView from '../views/Admin.vue'
-import adminmenu from '../components/admin/AdminMenu.vue'
-import Myfav from '../components/mypage/MyList.vue';
-import Mycart from '../components/cart/MyCart.vue'
-import purchase from '../views/purchase/purchase.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,104 +6,119 @@ const router = createRouter({
     {
       path: '/',
       name: 'main',
-      component: HomeView,
+      component: () => import('../views/HomeView.vue'),
     },
     {
       path: '/user',
       name: 'user',
-      component: LoginView,
+      component: () => import('../views/Login.vue'),
       children:[
         {
           path: '',
           name: 'login',
-          component: Loginform,
+          component: () => import('../components/user/login.vue'),
         },{
           path: 'regist',
           name: 'regist',
-          component: Registform,
+          component: () => import('../components/user/regist.vue'),
         },
       ]
     },
     {
       path: '/manager',
       name: 'manager',
-      component: adminView,
+      component: () => import('../views/Admin.vue'),
       children:[
         {
           path: '/d',
           name: 'm',
-          component: adminmenu,
+          component: () => import('../components/admin/AdminMenu.vue'),
         },
       ]
     },
     {
       path: '/goods',
       name: 'goods',
-      component: ProductView, 
+      component: () => import('../views/products/Product-main.vue'),
       children:[
         {
           path: "",
           name: 'goods_List',
-          component: goods_ListView
+          component: () => import('../views/products/Product-list.vue'),
         },{
           path: ":itemcode",
           name: 'goods_List',
-          component: goods_ListView
+          component: () => import('../views/products/Product-list.vue'),
         },{
           path: "detail/:productId",
           name: 'goods_Detail',
-          component: goods_Detail
+          component: () => import('../components/Products/ProductsDetail.vue'),
         },
       ]
     },{
       path:'/mypage',
       name:'mypage',
-      component:MypageView,
+      component: () => import('../views/Mypage.vue'),
       children:[
         {
           path: "",
           name: 'mypage-main',
-          component: Mypage_list,
+          component: () => import('../components/mypage/Mypagecont.vue'),
         },{
           path: "/mylist",
           name: 'mylist',
-          component: Myfav,
+          component: () => import('../components/mypage/MyList.vue'),
         },{
           path: "/mycart",
           name: 'mycart',
-          component: Mycart,
+          component: () => import('../components/cart/MyCart.vue'),
         },{
           path: "/myorder",
           name: 'myorder',
-          component: Mypage_list,
+          component: () => import('../views/Login.vue'),
         },{
           path: "/myaddress",
           name: 'myaddress',
-          component: myaddress,
+          component: () => import('../components/mypage/MyAddressControl.vue'),
         },{
           path: "/myreview",
           name: 'myreview',
           props: {type : 1},
-          component: myreviews,
+          component: () => import('../components/mypage/Myresult.vue'),
         },{
           path: "/myquestion",
           name: 'myquestion',
           props:{type : 2},
-          component: myreviews,
+          component: () => import('../components/mypage/Myresult.vue'),
         },{
           path: "mynotice",
           name: 'mynotice',
-          component: Notice,
+          component: () => import('../components/mypage/Mynotice.vue'),
         },{
           path: "myinfo",
           name: 'myinfo',
-          component: Mypage_info,
+          component: () => import('../components/mypage/MyEdit.vue'),
         },
       ]
     },{
         path: "/purchase",
         name: 'purchase',
-        component: purchase,
+        component: () => import('../views/purchase/PurchaseView.vue'),
+        children:[
+          {
+            path: "",
+            name: 'order',
+            component: () => import('../views/purchase/order.vue'),
+          },{
+            path: "/success",
+            name: 'success',
+            component: () => import('../views/purchase/success.vue'),
+          },{
+            path: "/fail",
+            name: 'fail',
+            component: () => import('../views/purchase/fail.vue'),
+          }
+        ]
     },
 
     /* 404 페이지 */

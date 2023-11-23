@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <video class="promotion-video" autoplay="autoplay" loop="loop" src="/banner/fake.mp4">
+    <video class="promotion-video" autoplay="autoplay" loop="loop" src="/banner/back.mp4">
     </video>
     <div class="logo"></div>
     <router-view v-slot="{ Component }">

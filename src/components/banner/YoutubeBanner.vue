@@ -6,7 +6,7 @@
 
 <script setup>
 
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import YouTubeiframe from '@/components/youtube/iframe.vue'
 
@@ -40,11 +40,14 @@ onMounted(() => {
 <style scoped>
 .banner-container{
     width: 2000px;
-    height: 300px;
+    /* width:100%; */
+    /* height: 300px; */
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    padding: 0 0;
+    margin: 0;
     background:linear-gradient(to right, rgb(20, 140, 220), gold);
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
 }
@@ -52,4 +55,11 @@ onMounted(() => {
 .banner-container h1 {
     font-size: 24px;
 }
+
+@media (max-width: 768px) {
+  .banner-container{
+    flex-direction: column;
+  }
+}
+
 </style>

@@ -32,7 +32,7 @@
                 <button v-if="isshow" @click="check(dynamicProps.productId)">♡</button>
                 <button v-else @click="unliked(dynamicProps.productId)" class="red">♥</button>
                 <button @click="addCart()">장바구니</button>
-                <button>바로 구매</button>
+                <button @click="pur()">바로 구매</button>
             </div>
         </div>
 
@@ -45,11 +45,14 @@ import { ref, onMounted } from 'vue';
 import { useHeartStore } from '../../stores/mylist';
 import { useProductStore } from '@/stores/product';
 import { useCartStore } from '@/stores/cart';
+import { useRouter } from 'vue-router';
 const cnt = ref(0);
 const isshow = ref(true);
 const pstore = useProductStore();
 const cstore = useCartStore();
 const store = useHeartStore();
+
+const router = useRouter();
 
 onMounted(()=>{
     for(let i = 0; i < store.heartList.length;i++){
@@ -60,6 +63,26 @@ onMounted(()=>{
     }
 })
 
+
+///구매
+function pur(){
+    if(cnt.value==0){
+        Swal.fire({
+            icon: "error",
+            title: "수량은 필수입니다.",
+            text: "수량을 정해주세요!",
+            confirmButtonColor: 'rgb(74,199,213)',
+        });
+        return;
+    }
+    let myObject = pstore.product;
+    let quentity = cnt.value;
+    cnt.value = 0;
+    myObject = { ...myObject, quentity };
+    cstore.addCart(myObject);
+    router.push({name:'order'});
+
+}
 
 //////장바구니///////
 function addCart(){

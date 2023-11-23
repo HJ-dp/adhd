@@ -2,31 +2,7 @@
     <div class="cart-container">
         <div class="order-container">
             <div class="leftside">
-                <div class="item-list card">
-                    <div class="card-content">
-                        <h1 class="title">장바구니</h1>
-                        <itemm v-for="i in ok" :dynamic-props="i" :key="i.productId" @dynamic-value="fff"/>
-                    </div>
-                </div>
-                <div class="total-price-box card">
-                    <div class="card-contentrow row">
-                        <h1 class="title">결제액</h1>
-                        <div class="coll">
-                            <h1 class="title">상품 금액</h1>
-                            <h1>{{ joinprice(price) }}원</h1>
-                        </div>
-                        <h1> - </h1>
-                        <div class="coll">
-                            <h1 class="title">할인금액</h1>
-                            <h1>{{ joinprice(dis) }}원</h1>
-                        </div>
-                        <h1> = </h1>
-                        <div class="coll">
-                            <h1 class="title">결제할 금액</h1>
-                            <h1>{{ joinprice(price) }}원</h1>
-                        </div>
-                    </div>
-                </div>
+                <cart/>
             </div>
             <div class="rightside">
                 <div class="address card">
@@ -34,7 +10,7 @@
                         배송지 설정
                     </div>
                 </div>
-                <button class="purchaseBtn card">구매</button>
+                <router-link :to="{name:'order'}"  class="purchaseBtn card" title="클릭하면 주문페이지로 이동해요">구매</router-link>
             </div>
         </div>
     </div>
@@ -42,24 +18,30 @@
 
 <script setup>
 import { ref } from 'vue';
-import itemm from './Cartcol.vue'
+import cart from './cartcart.vue'
 
 const ok = ref();
 ok.value = JSON.parse(localStorage.getItem('cart'));
-const price = ref(0);
-const dis = ref(0);
-
-function fff(n){
-    price.value += n;
-}
-
-function joinprice(p){
-    return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
 
 </script>
 
 <style scoped>
+a{
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(74, 199, 213);
+  }
+  a:hover{
+    border:2px solid black;
+  }
+
 .cart-container {
     display: flex;
     flex-direction: column;
@@ -69,17 +51,6 @@ function joinprice(p){
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2em;
-}
-
-.coll{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:1em;
-}
-
-.title {
-    font-size:15px;
 }
 
 .order-container {
@@ -107,31 +78,10 @@ function joinprice(p){
     gap: 1em;
 }
 
-.row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.item-list {
-    min-height: 300px;
-    width: 100%;
-    /* background-color: aqua; */
-}
-
-.total-price-box {
-    min-height: 100px;
-    background-color: #eee;
-    width: 100%;
-}
 
 .address {
     /* background-color: aquamarine; */
     min-height: 300px;
-    width: 100%;
-}
-
-.purchase {
     width: 100%;
 }
 
@@ -148,10 +98,6 @@ function joinprice(p){
     flex-direction: column;
     gap:1em;
     align-items: center;
-}
-
-.card-contentrow{
-    margin:2em;
 }
 
 

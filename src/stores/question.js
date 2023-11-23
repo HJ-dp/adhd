@@ -18,7 +18,8 @@ export const useQuestionStore = defineStore('question', () => {
   }
 
   const questionListmine= function(id){
-    axios.get(REST_Question_API+`productQuestionList?userId=${id}`)
+    console.log(id);
+    axios.get(REST_Question_API+`userQuestionList?userId=${id}`)
     .then((res)=>{
       QuestionList.value = res.data
     })
