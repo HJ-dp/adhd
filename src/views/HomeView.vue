@@ -11,6 +11,7 @@
       <h1>새 상품</h1>
       <list :dynamic-props="store.latestProductList"/>
     </div>
+    <youtubeBanner/>
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 import titles from '../components/banner/Titlebanner.vue'
 import list from '../components/Products/ProductsList.vue'
 import banner from '../components/banner/EventBanner.vue'
+import youtubeBanner from '@/components/banner/YoutubeBanner.vue'
 
 import {useProductStore} from '@/stores/product';
 import { onMounted } from 'vue';

@@ -10,6 +10,7 @@ import MypageView from '../views/Mypage.vue';
 import Mypage_list from '../components/mypage/Mypagecont.vue';
 import myreviews from '../components/mypage/Myresult.vue'
 import myaddress from '../components/mypage/MyAddress.vue'
+import YoutubeView from '../views/YoutubeView.vue'
 
 
 const router = createRouter({
@@ -97,7 +98,12 @@ const router = createRouter({
           component: Mypage_list,
         },
       ]
-    }
+    },
+    {
+      path: "/youtube",
+      name: "youtube",
+      component: YoutubeView,
+    },
   ]
 })
 
