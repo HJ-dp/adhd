@@ -9,7 +9,14 @@ import goods_Detail from '../components/Products/ProductsDetail.vue'
 import MypageView from '../views/Mypage.vue';
 import Mypage_list from '../components/mypage/Mypagecont.vue';
 import myreviews from '../components/mypage/Myresult.vue'
-import myaddress from '../components/mypage/MyAddress.vue'
+import myaddress from '../components/mypage/MyAddressControl.vue'
+import Mypage_info from '../components/mypage/MyEdit.vue'
+import Notice from '../components/mypage/Mynotice.vue'
+import adminView from '../views/Admin.vue'
+import adminmenu from '../components/admin/AdminMenu.vue'
+import Myfav from '../components/mypage/MyList.vue';
+import Mycart from '../components/cart/MyCart.vue'
+import purchase from '../views/purchase/purchase.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -111,7 +118,17 @@ const router = createRouter({
           component: Mypage_info,
         },
       ]
-    }
+    },{
+        path: "/purchase",
+        name: 'purchase',
+        component: purchase,
+    },
+
+    /* 404 페이지 */
+    {
+      path: '/:catchAll(.*)',
+      component: () => import('../views/NotFound.vue'),
+    },
   ]
 })
 
