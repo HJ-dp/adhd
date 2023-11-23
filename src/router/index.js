@@ -15,6 +15,8 @@ import Notice from '../components/mypage/Mynotice.vue'
 import adminView from '../views/Admin.vue'
 import adminmenu from '../components/admin/AdminMenu.vue'
 import Myfav from '../components/mypage/MyList.vue';
+import Mycart from '../components/cart/MyCart.vue'
+import purchase from '../views/purchase/purchase.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -71,8 +73,7 @@ const router = createRouter({
           component: goods_Detail
         },
       ]
-    },
-    {
+    },{
       path:'/mypage',
       name:'mypage',
       component:MypageView,
@@ -88,7 +89,7 @@ const router = createRouter({
         },{
           path: "/mycart",
           name: 'mycart',
-          component: Mypage_list,
+          component: Mycart,
         },{
           path: "/myorder",
           name: 'myorder',
@@ -116,13 +117,17 @@ const router = createRouter({
           name: 'myinfo',
           component: Mypage_info,
         },
-
       ]
+    },{
+        path: "/purchase",
+        name: 'purchase',
+        component: purchase,
     },
+
     /* 404 페이지 */
     {
       path: '/:catchAll(.*)',
-      component: () => import('../views/NotFound.vue'), // 404 페이지 컴포넌트 경로에 맞게 수정
+      component: () => import('../views/NotFound.vue'),
     },
   ]
 })

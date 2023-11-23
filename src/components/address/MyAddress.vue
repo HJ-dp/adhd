@@ -228,8 +228,8 @@ label {
 
 .swal2-input,
 .swal2-textarea {
-    width: 30vw;
-    max-width: 400px;
+    width: 60vw;
+    max-width: 600px;
     position: relative;
 }
 </style>

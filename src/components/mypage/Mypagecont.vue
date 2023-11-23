@@ -59,17 +59,17 @@ onMounted(async ()=>{
 /* <a href="https://kr.freepik.com/free-photo/shopping-cart-or-trolley-basket-supermarket-icon-sign-or-symbol-on-white-background-3d-rendering_25289009.htm#page=4&query=3d&position=33&from_view=keyword&track=sph&uuid=28ac6885-4d3b-49e7-a01e-a948aaf20f35">작가 mamewmy</a> 출처 Freepik */
 /* 출처 <a href="https://kr.freepik.com/free-psd/3d-rendering-of-ui-icon_20546695.htm#page=4&query=3d&position=22&from_view=keyword&track=sph&uuid=28ac6885-4d3b-49e7-a01e-a948aaf20f35">Freepik</a> */
 .notice {
-    background-image: url('/megaphone.jpg');
+    background-image: url('/megaphone.png');
     background-size: cover;
 }
 
 .order {
-    background-image: url('/3drender.jpg');
+    background-image: url('/3drender.png');
     background-size: cover;
 }
 
 .list {
-    background-image: url('/3dheart.jpg');
+    background-image: url('/3dheart.png');
     background-size: cover;
     background-position: 0 40%;
 }
@@ -81,25 +81,25 @@ onMounted(async ()=>{
 }
 
 .cart{
-    background-image: url('/cart.jpg');
+    background-image: url('/cart.png');
     background-position: 50% 70%;
     background-size: 130%;
 }
 
 .delivery{
-    background-image: url('/delivery.jpg');
+    background-image: url('/delivery.png');
     background-position: 0% 70%;
     background-size: 100%;
 }
 
 .review{
-    background-image: url('/flower.jpg');
-    background-position: 0% 70%;
-    background-size: 100%;
+    background-image: url('/flower.png');
+    background-position: 50% 50%;
+    background-size: 120%;
 }
 
 .ques{
-    background-image: url('/qu.jpg');
+    background-image: url('/qu.png');
     background-position: 0% 70%;
     background-size: 100%;
 }

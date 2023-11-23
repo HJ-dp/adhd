@@ -128,5 +128,31 @@ export const useUserStore = defineStore('user', () => {
             })
     }
 
-    return { getInfo, updatee, login, regist, logout, loginuser, User, userInfo }
+    const signout = function (user) {
+        axios({
+            url: REST_USER_API + `usercancel/${user}`,
+            method: 'PUT',
+            data: user,
+        }).then(() => {
+                Swal.fire({
+                    title: "감사했습니다!",
+                    text: "정상적으로 탈퇴되었습니다.",
+                    icon: "success",
+                    confirmButtonColor: 'rgb(74,199,213)',
+                });
+                router.push({name:'login'});
+            })
+            .catch((res) => {
+                console.log(res);
+                Swal.fire({
+                    title: "문제가 발생했습니다",
+                    text: "다시 시도해주세요",
+                    icon: "error",
+                    confirmButtonColor: 'rgb(74,199,213)',
+                });
+            })
+    }
+
+
+    return { signout, getInfo, updatee, login, regist, logout, loginuser, User, userInfo }
 }, { persist: true })

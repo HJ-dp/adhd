@@ -31,7 +31,7 @@
             <div class="btn-container">
                 <button v-if="isshow" @click="check(dynamicProps.productId)">♡</button>
                 <button v-else @click="unliked(dynamicProps.productId)" class="red">♥</button>
-                <button>장바구니</button>
+                <button @click="addCart()">장바구니</button>
                 <button>바로 구매</button>
             </div>
         </div>
@@ -57,6 +57,12 @@ onMounted(()=>{
         }
     }
 })
+
+
+//////장바구니///////
+function addCart(){
+
+}
 
 /////////찜////////////
 

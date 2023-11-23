@@ -1,7 +1,6 @@
 <template>
     <div class="List-container">
-        {{ store.heartList }}
-        <card v-for="i in store.heartList" :key="i.heartId"/>
+        <card v-for="i in store.heartList" :dynamic-props="i" :key="i.heartId"/>
     </div>
 </template>
 

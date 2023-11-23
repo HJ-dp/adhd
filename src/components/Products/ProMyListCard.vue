@@ -3,28 +3,37 @@
         <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps?.productImg})`}" alt="상품 사진"></div>
         <div class="card-info">
             <div class="card-info-badge" :class="{'hot':hot, 'new':isNew}"> NEW</div>
-            <div class="card-info-title">{{ dynamicProps?.productName }}</div>
-            <div class="card-info-price">₩ {{ joinprice(dynamicProps?.price) }}</div>
+            <!-- <div class="card-info-title">{{ dynamicProps?.productName }}</div> -->
+            <!-- <div class="card-info-price">₩ {{ dynamicProps?.price }}</div> -->
         </div>
     </router-link> 
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useProductStore } from '@/stores/product';
+import axios from 'axios';
+
+const VITE_DEV_HOST_URL = import.meta.env.VITE_DEV_HOST_URL
+const REST_PRODUCT_API = VITE_DEV_HOST_URL+'product/'
+const store = useProductStore();
 const hot = ref(false);
 const isNew = ref(true);
+const price = ref(0);
+const name = ref();
+const productImg = ref();
 
 defineProps({
     dynamicProps: Object
 })
 
-function joinprice(p){
-    return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
-
-// function goingto(Id){
-    
-// }
+onMounted(async (productId)=>{
+    await axios.get(REST_PRODUCT_API+`${productId}`)
+    .then((res)=>{
+      console.log(res.data);
+    })
+  }
+)
 
 </script>
 
@@ -65,7 +74,6 @@ function joinprice(p){
     border-radius: 10px;
     height: 325px;
     background-color: #e7e7e7;
-    /* background-image: url('https://d29trs2nbedcfj.cloudfront.net/erp/shop/b096259a-3ed4-43e3-9adf-e979f1abc19c20230905.jpg'); */
     background-size: cover;
     background-position: 50% 50%;
 }

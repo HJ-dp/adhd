@@ -36,24 +36,25 @@
         </div>
         <div class="btn-box">
             <button @click="vaildationCheck()">정보수정</button>
-            <button @click="vaildationCheck()">회원탈퇴</button>
+            <button @click="signout()">회원탈퇴</button>
         </div>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 import { useUserStore } from '@/stores/user';
 
 const store = useUserStore();
 
-const inputId = ref(store.userInfo.userId?? '');
+const inputId = ref(store.userInfo.userId ?? '');
 const inputPw = ref();
 const inputcheckPw = ref();
-const inputPhone = ref(store.userInfo.userPhone??'');
-const inputName = ref(store.userInfo.userName??'');
-const inputEmail = ref(store.userInfo.userEmail??'');
-const inputNick = ref(store.userInfo.userNickname??'');
+const inputPhone = ref(store.userInfo.userPhone ?? '');
+const inputName = ref(store.userInfo.userName ?? '');
+const inputEmail = ref(store.userInfo.userEmail ?? '');
+const inputNick = ref(store.userInfo.userNickname ?? '');
 
 const idcheck = ref();
 const pwcheck = ref();
@@ -70,6 +71,66 @@ const phonewar = ref(false);
 const namewar = ref(false);
 const emailwar = ref(false);
 const nickwar = ref(false);
+
+function signout() {
+    Swal.fire({
+        title: "탈퇴를 진행할까요?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "탈퇴",
+        cancelButtonText: "취소",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "진짜 진심 탈퇴하시려고요?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "탈퇴",
+                cancelButtonText: "취소",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "왜요?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "탈퇴",
+                        cancelButtonText: "취소",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "가지마세요ㅜㅜ",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonText: "탈퇴",
+                                cancelButtonText: "취소",
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: "카악 퉷",
+                                        icon: "warning",
+                                        showCancelButton: true,
+                                        confirmButtonText: "탈퇴",
+                                        cancelButtonText: "취소",
+                                        reverseButtons: true
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            store.signout(store.userInfo.userId);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+}
 
 function vaildationCheck() {
     idcheck.value = "";
@@ -176,10 +237,11 @@ function checkPhone(phone) {
 </script>
 
 <style scoped>
-
-#inputId, #inputName {
-    color:gray
+#inputId,
+#inputName {
+    color: gray
 }
+
 .regist-box {
     display: flex;
     flex-direction: column;
@@ -206,7 +268,7 @@ function checkPhone(phone) {
     max-width: 350px;
     height: 18px;
     background-color: transparent;
-    color : white;
+    color: white;
 }
 
 .input-box {
