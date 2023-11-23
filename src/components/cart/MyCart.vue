@@ -10,7 +10,7 @@
                         배송지 설정
                     </div>
                 </div>
-                <button class="purchaseBtn card">구매</button>
+                <router-link :to="{name:'purchase'}"  class="purchaseBtn card" title="클릭하면 주문페이지로 이동해요">구매</router-link>
             </div>
         </div>
     </div>
@@ -26,6 +26,22 @@ ok.value = JSON.parse(localStorage.getItem('cart'));
 </script>
 
 <style scoped>
+a{
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(74, 199, 213);
+  }
+  a:hover{
+    border:2px solid black;
+  }
+
 .cart-container {
     display: flex;
     flex-direction: column;
