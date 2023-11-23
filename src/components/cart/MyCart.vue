@@ -5,7 +5,7 @@
                 <div class="item-list card">
                     <div class="card-content">
                         <h1 class="title">장바구니</h1>
-                        <itemm/>
+                        <itemm v-for="i in ok" :dynamic-props="i" :key="i.productId" @dynamic-value="fff"/>
                     </div>
                 </div>
                 <div class="total-price-box card">
@@ -13,17 +13,17 @@
                         <h1 class="title">결제액</h1>
                         <div class="coll">
                             <h1 class="title">상품 금액</h1>
-                            <h1>142{{ }}원</h1>
+                            <h1>{{ joinprice(price) }}원</h1>
                         </div>
                         <h1> - </h1>
                         <div class="coll">
                             <h1 class="title">할인금액</h1>
-                            <h1>12{{ }}원</h1>
+                            <h1>{{ joinprice(dis) }}원</h1>
                         </div>
                         <h1> = </h1>
                         <div class="coll">
                             <h1 class="title">결제할 금액</h1>
-                            <h1>123{{ }}원</h1>
+                            <h1>{{ joinprice(price) }}원</h1>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,22 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import itemm from './Cartcol.vue'
+
+const ok = ref();
+ok.value = JSON.parse(localStorage.getItem('cart'));
+const price = ref(0);
+const dis = ref(0);
+
+function fff(n){
+    price.value += n;
+}
+
+function joinprice(p){
+    return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+
 </script>
 
 <style scoped>
@@ -101,7 +116,7 @@ import itemm from './Cartcol.vue'
 .item-list {
     min-height: 300px;
     width: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .total-price-box {
@@ -111,7 +126,7 @@ import itemm from './Cartcol.vue'
 }
 
 .address {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     min-height: 300px;
     width: 100%;
 }

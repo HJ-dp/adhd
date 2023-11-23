@@ -44,9 +44,11 @@ import Swal from 'sweetalert2/src/sweetalert2.js'
 import { ref, onMounted } from 'vue';
 import { useHeartStore } from '../../stores/mylist';
 import { useProductStore } from '@/stores/product';
+import { useCartStore } from '@/stores/cart';
 const cnt = ref(0);
 const isshow = ref(true);
 const pstore = useProductStore();
+const cstore = useCartStore();
 const store = useHeartStore();
 
 onMounted(()=>{
@@ -61,7 +63,20 @@ onMounted(()=>{
 
 //////장바구니///////
 function addCart(){
-
+    if(cnt.value==0){
+        Swal.fire({
+            icon: "error",
+            title: "수량은 필수입니다.",
+            text: "수량을 정해주세요!",
+            confirmButtonColor: 'rgb(74,199,213)',
+        });
+        return;
+    }
+    let myObject = pstore.product;
+    let quentity = cnt.value;
+    cnt.value = 0;
+    myObject = { ...myObject, quentity };
+    cstore.addCart(myObject);
 }
 
 /////////찜////////////
