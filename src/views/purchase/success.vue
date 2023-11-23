@@ -1,6 +1,8 @@
 <template>
     <div class="success-container">
         <div class="success-content">
+            <h1>주문 번호 : {{ $route.query.orderId }}</h1>
+            <h1>{{ $route.query.amount }}원</h1>
             <h1>결제 성공</h1>
         </div>
     </div>
@@ -30,8 +32,10 @@ tsParticles.load("tsparticles", {
     width: 100%;
     height: 50vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap:1em;
 }
 
 .success-content h1{
