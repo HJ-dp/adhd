@@ -11,7 +11,7 @@
                         <where :dynamic-props="store.AddressList" />
                     </div>
                 </div>
-                <router-link :to="{ name: 'order' }" class="purchaseBtn card" title="클릭하면 주문페이지로 이동해요">구매</router-link>
+                <router-link v-if="ok" :to="{ name: 'order' }" class="purchaseBtn card" title="클릭하면 주문페이지로 이동해요">구매</router-link>
             </div>
         </div>
     </div>
