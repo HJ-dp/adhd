@@ -1,4 +1,4 @@
-import { ref, reactive  } from 'vue'
+import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router';
 import axios from 'axios';
@@ -19,17 +19,28 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   const addCart = function (item) {
-    cartList.push(item);
-    persistCart();
-    Swal.fire({
-            title: "카트 담기 완료!",
-            text: "그만 담으세요 좀",
-            icon: "success",
-            confirmButtonColor: 'rgb(74,199,213)',
-        })
+    const { loginuser } = JSON.parse(localStorage.getItem('user') || '{}')
+    if (loginuser) {
+      cartList.push(item);
+      persistCart();
+      Swal.fire({
+        title: "카트 담기 완료!",
+        text: "그만 담으세요 좀",
+        icon: "success",
+        confirmButtonColor: 'rgb(74,199,213)',
+      })
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "로그인이 필요한 기능입니다.",
+        text: "로그인 하시고 이용해주세요!",
+        confirmButtonColor: 'rgb(74,199,213)',
+      });
+    }
+
   }
 
-  const removeItemByProductId = function(i) {
+  const removeItemByProductId = function (i) {
     const indexToRemove = cartList.findIndex(item => item.productId === i.productId);
     if (indexToRemove !== -1) {
       this.items.splice(indexToRemove, 1);
@@ -47,39 +58,39 @@ export const useCartStore = defineStore('cart', () => {
       // cartList = JSON.parse(cart);
     }
   }
-    // if(!localcart.value.includes(product)){
-    //     localcart.value.add(product);
-    // } else {
-    //     Swal.fire({
-    //         title: "카트에 이미 담겨있어요",
-    //         text: "몇개를 담을 생각이신 거에요",
-    //         icon: "error",
-    //         confirmButtonColor: 'rgb(74,199,213)',
-    //     });
-    // }
-    //api 쓰기?
-    //   axios({
-    //     url:REST_CART_API,
-    //     method:"POST",
-    //     data : product,
-    //   })
-    //   .then(()=>{
-    //     Swal.fire({
-    //       title: "카트 담기 완료!",
-    //       text: "그만 담으세요 좀",
-    //       icon: "success",
-    //       confirmButtonColor: 'rgb(74,199,213)',
-    //   })
-    //   })
-    //   .catch(()=>{
-    //     Swal.fire({
-    //         title: "카트에 못담았습니다🥲",
-    //         text: "다시 시도해주세요",
-    //         icon: "error",
-    //         confirmButtonColor: 'rgb(74,199,213)',
-    //     });
-    // })
-  
+  // if(!localcart.value.includes(product)){
+  //     localcart.value.add(product);
+  // } else {
+  //     Swal.fire({
+  //         title: "카트에 이미 담겨있어요",
+  //         text: "몇개를 담을 생각이신 거에요",
+  //         icon: "error",
+  //         confirmButtonColor: 'rgb(74,199,213)',
+  //     });
+  // }
+  //api 쓰기?
+  //   axios({
+  //     url:REST_CART_API,
+  //     method:"POST",
+  //     data : product,
+  //   })
+  //   .then(()=>{
+  //     Swal.fire({
+  //       title: "카트 담기 완료!",
+  //       text: "그만 담으세요 좀",
+  //       icon: "success",
+  //       confirmButtonColor: 'rgb(74,199,213)',
+  //   })
+  //   })
+  //   .catch(()=>{
+  //     Swal.fire({
+  //         title: "카트에 못담았습니다🥲",
+  //         text: "다시 시도해주세요",
+  //         icon: "error",
+  //         confirmButtonColor: 'rgb(74,199,213)',
+  //     });
+  // })
+
 
   const updateNotice = function (r) {
     axios({

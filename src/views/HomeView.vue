@@ -22,7 +22,9 @@ import banner from '../components/banner/EventBanner.vue'
 import youtubeBanner from '@/components/banner/YoutubeBanner.vue'
 import {useProductStore} from '@/stores/product';
 import { onMounted } from 'vue';
-
+import { useRoute } from 'vue-router';
+const route = useRoute();
+console.log(route)
 const store = useProductStore();
 
 onMounted(async ()=>{

@@ -17,7 +17,7 @@ const vvideos = ref([])
 onMounted(() => {
   
   const URL = 'https://www.googleapis.com/youtube/v3/search'
-  const API_KEY = 'AIzaSyBLiRFt-3tSa3wrWQw8BljUnMNyqRI6Vzc'
+  const API_KEY = 'AIzaSyBFjI6IaK0u7lLwqvudDD134Dh69EyUfCk'
   axios({
     url: URL,
     method: "GET",

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior: () => ({top: 0}),
   routes: [
     {
       path: '/',
@@ -27,11 +28,13 @@ const router = createRouter({
     {
       path: '/manager',
       name: 'manager',
+      meta: {auth:true},
       component: () => import('../views/Admin.vue'),
       children:[
         {
           path: '/d',
           name: 'm',
+          meta: {auth:true},
           component: () => import('../components/admin/AdminMenu.vue'),
         },
       ]
@@ -58,64 +61,78 @@ const router = createRouter({
     },{
       path:'/mypage',
       name:'mypage',
+      meta: {auth:true},
       component: () => import('../views/Mypage.vue'),
       children:[
         {
           path: "",
           name: 'mypage-main',
+          meta: {auth:true},
           component: () => import('../components/mypage/Mypagecont.vue'),
         },{
           path: "/mylist",
           name: 'mylist',
+          meta: {auth:true},
           component: () => import('../components/mypage/MyList.vue'),
         },{
           path: "/mycart",
           name: 'mycart',
+          meta: {auth:true},
           component: () => import('../components/cart/MyCart.vue'),
         },{
           path: "/myorder",
           name: 'myorder',
+          meta: {auth:true},
           component: () => import('../views/Login.vue'),
         },{
           path: "/myaddress",
           name: 'myaddress',
+          meta: {auth:true},
           component: () => import('../components/mypage/MyAddressControl.vue'),
         },{
           path: "/myreview",
           name: 'myreview',
+          meta: {auth:true},
           props: {type : 1},
           component: () => import('../components/mypage/Myresult.vue'),
         },{
           path: "/myquestion",
           name: 'myquestion',
+          meta: {auth:true},
           props:{type : 2},
           component: () => import('../components/mypage/Myresult.vue'),
         },{
           path: "mynotice",
           name: 'mynotice',
+          meta: {auth:true},
           component: () => import('../components/mypage/Mynotice.vue'),
         },{
           path: "myinfo",
           name: 'myinfo',
+          meta: {auth:true},
           component: () => import('../components/mypage/MyEdit.vue'),
         },
       ]
     },{
         path: "/purchase",
         name: 'purchase',
+        meta: {auth:true},
         component: () => import('../views/purchase/PurchaseView.vue'),
         children:[
           {
             path: "",
             name: 'order',
+            meta: {auth:true},
             component: () => import('../views/purchase/order.vue'),
           },{
             path: "/success",
             name: 'success',
+            meta: {auth:true},
             component: () => import('../views/purchase/success.vue'),
           },{
             path: "/fail",
             name: 'fail',
+            meta: {auth:true},
             component: () => import('../views/purchase/fail.vue'),
           }
         ]

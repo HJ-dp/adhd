@@ -7,11 +7,8 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
 import theHeader from './components/common/GNB.vue'
 import theFooter from './components/common/Footer.vue'
-const router = useRouter();
-
 
 </script>
 
