@@ -1,9 +1,10 @@
 <template>
     <div class="review-list-container">
-         <h1>이벤트</h1>
-        <div v-if="dynamicProps?.length==0">진행중인 이벤트가 없습니다.</div>
-        <NoticeColumn v-for="i in dynamicProps" :dynamic-props="i" :key="i.reviewId"/>
-        <button v-if="store.userInfo?.manager == 1" @click="check" class="writebutton" title="클릭하면 이벤트 공지사항을 남길 수 있어요.">글쓰기</button>
+        <h1>이벤트</h1>
+        <div v-if="dynamicProps?.length == 0">진행중인 이벤트가 없습니다.</div>
+        <NoticeColumn v-for="i in dynamicProps" :dynamic-props="i" :key="i.reviewId" />
+        <button v-if="store.userInfo?.manager == 1" @click="check" class="writebutton"
+            title="클릭하면 이벤트 공지사항을 남길 수 있어요.">글쓰기</button>
     </div>
 </template>
 
@@ -21,7 +22,7 @@ defineProps({
     dynamicProps: Array,
 })
 
-const check = ()=>{
+const check = () => {
     if (sessionStorage.getItem('token') ?? false) {
         writed();
     } else {
@@ -58,16 +59,16 @@ const writed = (async () => {
                 Swal.showValidationMessage('<i class="fa fa-info-circle"></i> 내용이 있어야져;')
             }
             return {
-               noticeTitle :document.getElementById("title").value,
-               noticeContent :document.getElementById("content").value,
-               managerId : localStorage.getItem("User"),
-               noticeWriter: store.userInfo.userNickname,
-               noticeId : 0,
-               noticeType:'E',
-               noticeImg:'',
-               noticeViews : 0,
-               noticeDelete : 'N',
-               noticeDate : '2023-11-20 00:00:00'
+                noticeTitle: document.getElementById("title").value,
+                noticeContent: document.getElementById("content").value,
+                managerId: localStorage.getItem("User"),
+                noticeWriter: store.userInfo.userNickname,
+                noticeId: 0,
+                noticeType: 'E',
+                noticeImg: '',
+                noticeViews: 0,
+                noticeDelete: 'N',
+                noticeDate: '2023-11-20 00:00:00'
             };
         }
     });
@@ -102,10 +103,10 @@ label {
 <style scoped>
 .review-list-container {
     width: 90vw;
-    max-width:1200px;
+    max-width: 1200px;
     min-height: 200px;
     border-radius: 10px;
-    border: 1px solid rgb(0,0,0,0.2);
+    border: 1px solid rgb(0, 0, 0, 0.2);
     transition: all .3s cubic-bezier(0, 0, .5, 1);
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
     display: flex;
@@ -117,7 +118,7 @@ label {
 
 .review-list-container h1 {
     margin: 1em;
-    font-size:17px;
+    font-size: 17px;
 }
 
 .writebutton {

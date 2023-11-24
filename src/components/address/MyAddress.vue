@@ -3,7 +3,7 @@
         <kakaomap />
         <div class="address-container">
             <h1>배송지 등록하기</h1>
-            <div class="input-box" @click="updated()">
+            <div class="input-box" @click="updated()" title="클릭하면 배송지 정보를 작성하거나 수정할 수 있어요">
                 <div class="input-box">
                     <label for="deliveryName">배송지명</label>
                     <input type="text" id="deliveryName" v-model="deliveryName" readonly>
@@ -39,8 +39,8 @@
                 </div>
             </div>
             <div class="btn-box">
-                <button @click.stop="updated">등록/수정</button>
-                <button @click.stop="send()">보내기</button>
+                <button @click.stop="updated" title="클릭하면 배송지 정보를 작성하거나 수정할 수 있어요">작성/수정</button>
+                <button @click.stop="send()" title="클릭하면 작성한 정보를 토대로 등록해요">등록</button>
             </div>
         </div>
     </div>
@@ -178,9 +178,9 @@ function send() {
 
 </script>
 <style>
-.row-wrapper{
+.row-wrapper {
     display: flex;
-    gap:3em;
+    gap: 3em;
     justify-content: center;
     align-items: center;
 }

@@ -1,12 +1,15 @@
 <template>
+    <div>
+        <!-- {{ dynamicProps }} -->
     <router-link class="card-container" :to="{name:'goods_Detail',params:{productId: dynamicProps?.productId}}" title="클릭하면 상품을 자세히 볼 수 있어요.">
         <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps?.productImg})`}" alt="상품 사진"></div>
         <div class="card-info">
             <div class="card-info-badge" :class="{'hot':hot, 'new':isNew}"> NEW</div>
-            <!-- <div class="card-info-title">{{ dynamicProps?.productName }}</div> -->
-            <!-- <div class="card-info-price">₩ {{ dynamicProps?.price }}</div> -->
+            <div class="card-info-title">{{ dynamicProps?.productName }}</div>
+            <div class="card-info-price">₩ {{ dynamicProps?.price }}</div>
         </div>
     </router-link> 
+</div>
 </template>
 
 <script setup>
@@ -27,11 +30,12 @@ defineProps({
     dynamicProps: Object
 })
 
-onMounted(async (productId)=>{
-    await axios.get(REST_PRODUCT_API+`${productId}`)
-    .then((res)=>{
-      console.log(res.data);
-    })
+onMounted(async ()=>{
+    await axios.get(REST_FAV_API + `/list/${localStorage.getItem('User')}`)
+      .then((res) => {
+        product.value = res.data;
+        heartList.push(res.data);
+      })
   }
 )
 

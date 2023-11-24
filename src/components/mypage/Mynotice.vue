@@ -1,8 +1,8 @@
 <template>
     <div class="notice-container">
-        <List :dynamic-props="store.NoticeList"/>
+        <List :dynamic-props="store.NoticeList" />
         <br>
-        <EList :dynamic-props="store.EventList"/>
+        <EList :dynamic-props="store.EventList" />
     </div>
 </template>
 
@@ -13,7 +13,7 @@ import List from '../notice/noticeList.vue'
 import EList from '../event/noticeList.vue'
 const store = useMNStore();
 
-onMounted(()=>{
+onMounted(() => {
     store.getNoticeList();
     store.getEventList();
 })
@@ -21,7 +21,5 @@ onMounted(()=>{
 </script>
 
 <style scoped>
-.notice-container{
-    
-}
+.notice-container {}
 </style>

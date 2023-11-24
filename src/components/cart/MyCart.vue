@@ -2,31 +2,40 @@
     <div class="cart-container">
         <div class="order-container">
             <div class="leftside">
-                <cart/>
+                <cart />
             </div>
             <div class="rightside">
                 <div class="address card">
                     <div class="card-content">
                         배송지 설정
+                        <where :dynamic-props="store.AddressList" />
                     </div>
                 </div>
-                <router-link :to="{name:'order'}"  class="purchaseBtn card" title="클릭하면 주문페이지로 이동해요">구매</router-link>
+                <router-link :to="{ name: 'order' }" class="purchaseBtn card" title="클릭하면 주문페이지로 이동해요">구매</router-link>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import cart from './cartcart.vue'
+import where from '../address/AddressList.vue'
+import { useAddressStore } from '@/stores/address'
 
 const ok = ref();
 ok.value = JSON.parse(localStorage.getItem('cart'));
 
+const store = useAddressStore();
+
+onMounted(async ()=>{
+    await store.getAddressList(localStorage.getItem('User'));
+})
+
 </script>
 
 <style scoped>
-a{
+a {
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
@@ -37,10 +46,11 @@ a{
     justify-content: center;
     align-items: center;
     background-color: rgb(74, 199, 213);
-  }
-  a:hover{
-    border:2px solid black;
-  }
+}
+
+a:hover {
+    border: 2px solid black;
+}
 
 .cart-container {
     display: flex;
@@ -93,10 +103,11 @@ a{
 }
 
 .card-content {
-    margin: 2em;
+    margin: 1em;
     display: flex;
+    max-width: 500px;
     flex-direction: column;
-    gap:1em;
+    gap: 1em;
     align-items: center;
 }
 

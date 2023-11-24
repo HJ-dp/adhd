@@ -153,11 +153,10 @@ async function regist() {
     };
     tsParticles.load("tsparticles", {
         particles: {
-          position:{
-            x:100,
-            y:100
-          }  
-        },
+        number: {
+            value: 200,
+        }
+    },
         preset: "confetti",
     });
     await store.regist(user);

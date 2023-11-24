@@ -1,7 +1,7 @@
 <template>
-    <div class="cont-container">  
+    <div class="cont-container">
         <list :dynamic-props="store.AddressList" />
-        <add/>
+        <add />
     </div>
 </template>
 
@@ -13,14 +13,14 @@ import list from '../address/AddressList.vue';
 
 const store = useAddressStore();
 
-onMounted(()=>{
+onMounted(() => {
     store.getAddressList(localStorage.getItem('User'));
 })
 
 </script>
 
 <style scoped>
-.cont-container{
+.cont-container {
     width: 100%;
     display: flex;
     flex-direction: column;

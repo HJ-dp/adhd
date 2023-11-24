@@ -1,7 +1,7 @@
 <template>
     <div class="cartitem-container">
         <div class="item-content">
-            <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps.productImg})`}" alt="상품 사진"></div>
+            <div class="card-img" :style="{ backgroundImage: `url(${dynamicProps.productImg})` }" alt="상품 사진"></div>
             <div>{{ dynamicProps.productName }}</div>
             <div>{{ dynamicProps.quentity }}개</div>
             <div class="nowrap">{{ joinprice(dynamicProps.price * dynamicProps.quentity) }}원</div>
@@ -11,33 +11,34 @@
 </template>
 
 <script setup>
-import { ref,watch } from 'vue';
+import { ref, watch } from 'vue';
 
 defineProps({
-    dynamicProps:Object,
+    dynamicProps: Object,
 })
 const emit = defineEmits(["dynamic-value"]);
 
 const pp = ref();
 
-function joinprice(p){
+function joinprice(p) {
     pp.value = p;
     return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 
 watch(
-    ()=>pp.value,(n)=>{
-    emit('dynamic-value', n);
-});
+    () => pp.value, (n) => {
+        emit('dynamic-value', n);
+    });
 
 </script>
 
 <style scoped>
-.nowrap{
+.nowrap {
     white-space: nowrap;
 }
-.card-img{
-    width:50px;
+
+.card-img {
+    width: 50px;
     border-radius: 10px;
     height: 50px;
     background-color: #e7e7e7;
@@ -45,25 +46,26 @@ watch(
     background-size: cover;
     background-position: 50% 50%;
 }
-.cartitem-container{
+
+.cartitem-container {
     width: 100%;
     background-color: transparent;
-    padding:10px;
+    padding: 10px;
     border-radius: 5px;
     transition: all .3s cubic-bezier(0, 0, .5, 1);
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
 }
 
-.item-content{
-    display:grid;
+.item-content {
+    display: grid;
     grid-template-columns: 1fr 2.5fr 1fr 1fr 1fr;
     justify-content: space-between;
     align-items: center;
-    gap:1em;
+    gap: 1em;
 }
 
 button {
-    border:none;
+    border: none;
     background-color: rgba(206, 51, 51, 0.2);
     border-radius: 10px;
     padding: 0.5em;

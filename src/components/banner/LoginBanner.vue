@@ -9,7 +9,7 @@
 </script>
 
 <style scoped>
-.login-container{
+.login-container {
     width: 100%;
     height: 400px;
     background-image: url(/banner/loginbanner.jpg);

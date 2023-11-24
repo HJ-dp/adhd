@@ -26,13 +26,13 @@
     inset: 0;
 }
 
-.sub-banner-container h1{
+.sub-banner-container h1 {
     font-size: 48px;
     /* text-shadow: 1px 1px; */
     transition: 0.2s;
 }
 
-.sub-banner-container h1:hover{
+.sub-banner-container h1:hover {
     font-size: 48px;
     text-shadow: 10px 10px 3px black;
 }

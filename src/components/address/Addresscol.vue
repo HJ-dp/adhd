@@ -1,5 +1,5 @@
 <template>
-    <div class="col-container">
+    <div class="col-container" :class="{act:toggle}" @click="toggle = !toggle">
         <div class="flexx">
             <h1>배송지명</h1>
             {{ dynamicProps.deliveryName }}
@@ -36,6 +36,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
+const toggle = ref(false);
 
 defineProps({
     dynamicProps: Object,
@@ -47,13 +50,23 @@ defineProps({
     display: flex;
     gap: 1em;
     flex-wrap: wrap;
-    border:1px solid black;
+    border: 1px solid black;
     padding: 1em;
     border-radius: 10px;
     justify-content: space-between;
     transition: all .3s cubic-bezier(0, 0, .5, 1);
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
 }
+
+.col-container:hover {
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, .16);
+    cursor: pointer;
+}  
+
+.act {
+    background-color: gray;
+}
+
 
 .flexx {
     display: flex;

@@ -26,7 +26,7 @@ export const useUserStore = defineStore('user', () => {
                 localStorage.setItem("User", user.id);
                 sessionStorage.setItem("token", token);
                 loginuser.value = true;
-                router.push({ name: 'main' });
+                router.go(-1);
             })
             .catch(() => {
                 Swal.fire({

@@ -9,23 +9,28 @@ const REST_FAV_API = VITE_DEV_HOST_URL + 'heart'
 export const useHeartStore = defineStore('heart', () => {
 
   const router = useRouter();
-  const heartList = ref([]);
+  // const heartList = ref([]);
+  const heartList = [];
   const product = ref([]);
   const cnt = ref([]);
 
   const getFavList = function () {
     axios.get(REST_FAV_API + `/list/${localStorage.getItem('User')}`)
       .then((res) => {
+        // product.value = res.data;
+        // heartList.value = res.data
         product.value = res.data;
-        heartList.value = res.data
+        heartList.push(res.data);
       })
   }
 
   const removeHeart = function (id) {
     const { loginuser } = JSON.parse(localStorage.getItem('user') || '{}')
     if (loginuser) {
-    const updatedList = heartList.value.filter((i) => i.productId == id);
-    heartList.value = updatedList;
+    // const updatedList = heartList.value.filter((i) => i.productId == id);
+    // heartList.value = updatedList;
+    const updatedList = heartList.filter((i) => i.productId == id);
+    heartList = updatedList;
     axios({
       url: REST_FAV_API + `/${id}`,
       method: 'DELETE',
@@ -74,9 +79,9 @@ export const useHeartStore = defineStore('heart', () => {
             icon: "success",
             confirmButtonColor: 'rgb(74,199,213)',
           })
-          setTimeout(() => {
-            router.go(0);
-          }, 2000);
+          // setTimeout(() => {
+          //   router.go(0);
+          // }, 2000);
         }).catch(() => {
           Swal.fire({
             title: "찜하기에 실패했습니다🥲",
@@ -96,8 +101,11 @@ export const useHeartStore = defineStore('heart', () => {
     }
   }
 
-  watch(heartList.value, () => {
-    cnt.value = heartList.value.length;
+  // watch(heartList.value, () => {
+  //   cnt.value = heartList.value.length;
+  // })
+  watch(heartList, () => {
+    cnt.value = heartList.length;
   })
 
   return { getFavList, heartProduct, removeHeart, heartList, product }

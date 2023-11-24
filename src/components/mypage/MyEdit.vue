@@ -35,8 +35,8 @@
             <p>{{ nickcheck }}</p>
         </div>
         <div class="btn-box">
-            <button @click="vaildationCheck()">정보수정</button>
-            <button @click="signout()">회원탈퇴</button>
+            <button @click="vaildationCheck()" title="클릭하면 입력하신 정보대로 수정할 수 있어요">정보수정</button>
+            <button @click="signout()" title="클릭하면 NC다이노스의 회원에서 탈퇴되긴하는데 무슨무슨 법으로 잡혀가요">회원탈퇴</button>
         </div>
     </div>
 </template>

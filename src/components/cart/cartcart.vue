@@ -37,18 +37,17 @@ ok.value = JSON.parse(localStorage.getItem('cart'));
 const price = ref(0);
 const dis = ref(0);
 
-function fff(n){
+function fff(n) {
     price.value += n;
 }
 
-function joinprice(p){
+function joinprice(p) {
     return p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 </script>
 
 <style scoped>
-
-.cart-con{
+.cart-con {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -57,6 +56,7 @@ function joinprice(p){
     margin: 1em;
     gap: 1em;
 }
+
 .cart-container {
     display: flex;
     flex-direction: column;
@@ -68,15 +68,15 @@ function joinprice(p){
     margin-bottom: 2em;
 }
 
-.coll{
+.coll {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:1em;
+    gap: 1em;
 }
 
 .title {
-    font-size:15px;
+    font-size: 15px;
 }
 
 .order-container {
@@ -144,12 +144,12 @@ function joinprice(p){
     margin: 2em;
     display: flex;
     flex-direction: column;
-    gap:1em;
+    gap: 1em;
     align-items: center;
 }
 
-.card-contentrow{
-    margin:2em;
+.card-contentrow {
+    margin: 2em;
 }
 
 
@@ -160,5 +160,4 @@ function joinprice(p){
 
     }
 }
-
 </style>

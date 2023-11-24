@@ -1,7 +1,6 @@
 <template>
     <div class="purchase-banner-container">
     </div>
-    
 </template>
 
 <script setup>
@@ -9,8 +8,6 @@
 </script>
 
 <style scoped>
-
-
 /* 헤더 배너 */
 .purchase-banner-container {
     background-image: url(/banner/titlebanner.jpg);

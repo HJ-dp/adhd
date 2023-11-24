@@ -2,7 +2,8 @@
     <div class="wrapper">
         <mypagebanner />
         <div class="mypage-container">
-            <mypagenav />
+            <!-- <mypagenav /> -->
+            <div style="margin-bottom:2em"></div>
             <router-view v-slot="{ Component }">
                 <transition name="slide" mode="out-in">
                     <component :is="Component" :key="$route.path" />

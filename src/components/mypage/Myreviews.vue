@@ -16,7 +16,7 @@ import QuestionColumn from '../questions/QuestionCol.vue'
 
 defineProps({
     dynamicProps: Object,
-    props : Object
+    props: Object
 })
 
 </script>

@@ -118,7 +118,8 @@ async function login() {
   });
   await store.login(user);
   
-  router.push({ name: 'main' });
+  // router.push({ name: 'main' });
+  // router.go(-1);
 }
 </script>
 

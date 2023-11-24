@@ -201,4 +201,5 @@ function deleteNotice(id) {
   .btn-box {
     flex-direction: row;
   }
-}</style>
+}
+</style>

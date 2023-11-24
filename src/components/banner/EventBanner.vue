@@ -13,7 +13,7 @@
 </script>
 
 <style scoped>
-.banner-container{
+.banner-container {
     width: 2000px;
     height: 200px;
     display: flex;
@@ -21,7 +21,7 @@
     justify-content: center;
     align-items: center;
     color: white;
-    background:linear-gradient(to right, crimson, gold);
+    background: linear-gradient(to right, crimson, gold);
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
 }
 

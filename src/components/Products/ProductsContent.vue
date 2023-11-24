@@ -21,18 +21,18 @@
                     <div class="row">
                         {{ cnt }}
                         <div class="btnBox">
-                            <button @click="increaseCnt">+</button>
-                            <button @click="decreaseCnt">-</button>
+                            <button @click="increaseCnt" title="클릭하면 수량을 더할 수 있어요">+</button>
+                            <button @click="decreaseCnt" title="클릭하면 수량을 뺄 수 있어요">-</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="line"></div>
             <div class="btn-container">
-                <button v-if="isshow" @click="check(dynamicProps.productId)">♡</button>
-                <button v-else @click="unliked(dynamicProps.productId)" class="red">♥</button>
-                <button @click="addCart()">장바구니</button>
-                <button @click="pur()">바로 구매</button>
+                <button v-if="isshow" @click="check(dynamicProps.productId)" title='클릭하면 이 상품을 찜목록에 넣어요.'>♡</button>
+                <button v-else @click="unliked(dynamicProps.productId)" class="red" title='클릭하면 이 상품을 찜목록에서 빼요'>♥</button>
+                <button @click="addCart()" title='클릭하면 이 상품을 장바구니에 넣어요.'>장바구니</button>
+                <button @click="pur()" title='클릭하면 이 상품을 바로 구매하러 갈 수 있어요.'>바로 구매</button>
             </div>
         </div>
 
@@ -54,19 +54,19 @@ const store = useHeartStore();
 
 const router = useRouter();
 
-onMounted(()=>{
-    for(let i = 0; i < store.heartList.length;i++){
-        // props.dynamicProps.productId??
-        if( pstore.product.productId == store.heartList[i].productId){
+onMounted(() => {
+    for (let i = 0; i < store.heartList.length; i++) {
+        if (pstore.product.productId == store.heartList[i].productId) {
             isshow.value = false;
         }
     }
 })
 
 
+
 ///구매
-function pur(){
-    if(cnt.value==0){
+function pur() {
+    if (cnt.value == 0) {
         Swal.fire({
             icon: "error",
             title: "수량은 필수입니다.",
@@ -80,13 +80,13 @@ function pur(){
     cnt.value = 0;
     myObject = { ...myObject, quentity };
     cstore.addCart(myObject);
-    router.push({name:'order'});
+    router.push({ name: 'order' });
 
 }
 
 //////장바구니///////
-function addCart(){
-    if(cnt.value==0){
+function addCart() {
+    if (cnt.value == 0) {
         Swal.fire({
             icon: "error",
             title: "수량은 필수입니다.",
@@ -124,30 +124,30 @@ function heart(p) {
         "userId": localStorage.getItem('User')
     }
     const num = ref();
-    for(let i in store.heartList){
-        if (i.userId == localStorage.getItem('User') && i.productId==p){
+    for (let i in store.heartList) {
+        if (i.userId == localStorage.getItem('User') && i.productId == p) {
             num.value = i.heartId;
-            isshow.value =false;
+            isshow.value = false;
             return;
         }
     }
-    isshow.value =false;
+    isshow.value = false;
     store.heartProduct(h);
     store.getFavList();
 }
 
-function unliked(p){
+function unliked(p) {
     const num = ref();
-    for(let a=0; a< store.heartList.length;a++){
-        if (store.heartList[a].userId === localStorage.getItem('User') && store.heartList[a].productId===p){
+    for (let a = 0; a < store.heartList.length; a++) {
+        if (store.heartList[a].userId === localStorage.getItem('User') && store.heartList[a].productId === p) {
             num.value = store.heartList[a].heartId;
             break;
         }
     }
-    if(num.value){
+    if (num.value) {
         store.removeHeart(num.value);
         store.getFavList();
-        isshow.value =true;
+        isshow.value = true;
     }
 }
 
@@ -185,8 +185,9 @@ function joinprice(p) {
 <style scoped>
 /* 찜버튼 빨갛게 */
 .red {
-    color:red;
+    color: red;
 }
+
 .option-box {
     margin: 2em;
 }
@@ -285,12 +286,14 @@ function joinprice(p) {
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
     cursor: pointer;
 }
-.row{
+
+.row {
     display: flex;
-    gap:1em;
+    gap: 1em;
     justify-content: center;
     align-items: center;
 }
+
 .btn-container *:active {
     background-color: gray;
 }
@@ -298,15 +301,17 @@ function joinprice(p) {
 .btnBox {
     display: flex;
     gap: 1em;
+
 }
 
 .btnBox button {
-    border:none;
+    border: none;
     background-color: transparent;
     border-radius: 10px;
     padding: 1em;
     transition: all .3s cubic-bezier(0, 0, .5, 1);
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
+    cursor: pointer;
 }
 
 /* 라인 */
@@ -315,5 +320,4 @@ function joinprice(p) {
     background-color: black;
     height: 2px;
 
-}
-</style>
+}</style>
